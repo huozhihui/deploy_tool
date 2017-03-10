@@ -1,0 +1,22 @@
+{% include "base/_parent.html" %}
+{% block custom_js %}
+<script>
+    // 隐藏参数
+    var hide_fields = ['id_system_0'];
+
+    $(function () {
+        // 操作方式
+        $('[id^=id_state_]').each(function () {
+            $(this).click(function () {
+                // 点击删除用户时
+                if ($(this).val() == 'absent') {
+                    set_fields(hide_fields, 'hide');
+                } else {
+                    set_fields(hide_fields, 'show');
+                }
+            })
+        })
+    })
+
+</script>
+{% endblock %}

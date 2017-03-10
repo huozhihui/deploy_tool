@@ -1,0 +1,9 @@
+<td>{{ obj.host.ip }}</td>
+<td>{{ obj.role_manage.name }}</td>
+<td>{{ obj.host.status }}|{{ obj.status_name }}</td>
+<td title="{{ obj.host.describe }}">
+    {{ obj.host.describe|truncatechars:50 }}
+</td>
+<td>
+    <a href="#" onclick="delete_date('{% url 'homework_delete_task_log' obj.id %}', this)">删除</a>
+</td>

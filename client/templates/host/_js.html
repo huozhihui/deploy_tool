@@ -1,0 +1,30 @@
+<script>
+    $(function () {
+        // 编辑时候,勾选对应复选框
+        console.log('aa')
+        var select_role = "{{select_roles}}";
+        console.log(select_role)
+        $('[id^=id_host_roles_]').each(function () {
+            val = $(this).val()
+            if (select_role.indexOf(val) >= 0) {
+                $(this).attr('checked', 'checked')
+            }
+        })
+
+        // 初始化 绑定表单校验
+        $('form').submit(function () {
+            return check_host_roles();
+        })
+    })
+
+    // 提交表单时候,检查角色复选框
+    function check_host_roles() {
+        host_roles_len = $('input[id^=id_host_roles_]:checked').length;
+        if (host_roles_len == 0) {
+            alert('角色不能为空');
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>

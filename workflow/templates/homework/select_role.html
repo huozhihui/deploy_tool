@@ -1,0 +1,44 @@
+{% extends "extends/tab.html" %}
+{% block content %}
+    <form action="{{ form_url }}" method="post">
+        {% csrf_token %}
+        <div class="dataTable_wrapper scroll">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <!--<th>序号</th>-->
+                    <th>
+                        <input id="all" name="all" type="checkbox" value="1">
+                        <label for="all" onclick="check_all()">
+                            全选/取消
+                        </label>
+                    </th>
+                    {% include './select_role/_th.html' %}
+{#                    <th>操作</th>#}
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in object_list %}
+                    <tr class="{% cycle 'odd' 'even' %} gradeX">
+                        <td>
+                            <input id="client_node_{{ forloop.counter }}" type="checkbox" name="role"
+                                   value="{{ obj.id }}"
+                                   {% if obj.id in select_roles %}checked="checked" {% endif %}>
+                        </td>
+                        {% include './select_role/_td.html' %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br/>
+        {#    <input class="btn btn-default" name="commit" type="submit" value="确认">#}
+        <a href="#" class="btn btn-default" onclick="submit_form()">确认</a>
+    </form>
+    {% include 'includes/use_dialog.html' %}
+{% endblock %}
+{% block custom_js %}
+    {% include './select_role/_js.html' %}
+{% endblock %}
+
+

@@ -1,0 +1,61 @@
+<div class="dataTable_wrapper scroll">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>参数</th>
+            <th>值</th>
+            <th>组</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in parameters %}
+            <tr id="tr_{{ obj.id }}" class="{% cycle 'odd' 'even' %} gradeX">
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href="#" data-target="#myModal" data-toggle="modal"
+                       onclick="show_dialog('{% url 'homework_update_params' obj.id %}')"
+                       remote="true">{{ obj.name }}</a>
+                </td>
+                <td title="{{ obj.value }}">{{ obj.value|truncatechars:60 }}</td>
+                <td>{{ obj.role_manage.name }}</td>
+                <td class="center">
+                    <a href="#" data-target="#myModal" data-toggle="modal"
+                       onclick="show_dialog('{% url 'homework_update_params' obj.id %}')" remote="true">编辑</a>
+                    <a href="#" onclick="delete_date('{% url 'homework_delete_params' obj.id %}', this)">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% include "includes/use_dialog.html" %}
+{% block custom_js %}
+    <script>
+        // 弹出窗口
+        {#        function show_dialog(pid) {#}
+        {#            $.ajax({#}
+        {#                url: "/homework/update_params/" + pid,#}
+        {#                method: "get",#}
+        {#                success: function (response) {#}
+        {#                    $('#update_div').html(response);#}
+        {#                }#}
+        {#            });#}
+        {#        }#}
+
+        // 删除数据
+        {#    function delete_date(id){#}
+        {#        $.ajax({#}
+        {#                url: "/homework/delete_params/" + id,#}
+        {#                method: "get",#}
+        {#                success: function (response) {#}
+        {#                    tr = $('#tr_' + id);#}
+        {#                    tr.remove();#}
+        {#                    $('div[role=alert]').removeClass('hidden');#}
+        {#                    $('div[role=alert]').children('strong').text(response.msg);#}
+        {#                }#}
+        {#            });#}
+        {#    }#}
+    </script>
+{% endblock %}

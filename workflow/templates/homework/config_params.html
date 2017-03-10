@@ -1,0 +1,11 @@
+{% extends "extends/tab.html" %}
+{% block panel-heading-1 %}参数列表{% endblock %}
+{% block content %}
+    {% include './config_params/_table.html' %}
+{% endblock %}
+{% block form %}
+    {% include './config_params/_form.html' %}
+{% endblock %}
+{% block custom_js %}
+    {% include './config_params/_js.html' %}
+{% endblock %}

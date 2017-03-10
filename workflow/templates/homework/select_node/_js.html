@@ -1,0 +1,58 @@
+<script>
+{#    $(function () {#}
+{#        $('#dataTables-example').dataTable({#}
+{#             "lengthMenu": [[25, 50, -1], [25, 50, "All"]]#}
+{#            "pageLength": 50#}
+{#        });#}
+{#    })#}
+
+    //    $(function () {
+    //        ws_ready()
+    //        var table = $('#dataTables-example').DataTable();
+    //        table.on('draw', function () {
+    //            ws_ready();
+    //        });
+    //    })
+
+    // 调用ws
+    function ws_ready() {
+        // 获取表格中数据ID
+        var id_arr = new Array();
+        $('td[cid]').each(function () {
+            id_arr.push($(this).attr('cid'))
+        })
+        var ids = id_arr.join(',')
+
+        // 要发送的数据
+        var date = {
+            "invoke_method": "heb.controller.client_node._web_socket",
+            "ids": ids
+        }
+
+        conn_websocket('{{ base_url }}', date)
+    }
+
+    // ws调用方法
+    function ws_invoke(data) {
+        $('td[cid]').each(function () {
+            id = $(this).attr('cid')
+            if (data[id]) {
+                $(this).parent().addClass('green');
+                $(this).html('在线')
+            } else {
+                $(this).parent().addClass('red');
+                $(this).html('离线')
+            }
+        })
+    }
+
+    // 提交表单
+    function submit_form() {
+        if ($('input:checked').length > 0) {
+            $('#confirm_node_form').submit()
+        } else {
+            alert('请选择要部署的节点。')
+            return false
+        }
+    }
+</script>

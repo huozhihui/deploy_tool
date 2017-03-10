@@ -1,0 +1,33 @@
+{% extends "extends/row_col_lg_12.html" %}
+{% load ext_template %}
+{% block panel-heading %}二、填写表单{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-6">
+        <form id="mid" action="/{{class_name}}/get_result" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {% for field in form.hidden_fields %}
+                {{field}}
+            {% endfor %}
+            {% for field in form.visible_fields %}
+            <div class="form-group">
+                {% if field.field.required %}
+                <span class="red">*</span>
+                {% endif %}
+                {{ field.label_tag }}
+                {% ifequal field|field_type 'ChoiceField' %}&nbsp;
+                {% for radio in field %}
+                {{radio}}&nbsp;&nbsp;
+                {% endfor %}
+                {% else %}
+                {{field|addcss:"form-control"}}
+                {% endifequal %}
+            </div>
+            {% endfor %}
+            <div id="default_params" class="form-group">
+                <!--<a href="#" onclick="show_hidden_fields(); return false;">查看默认参数</a>-->
+            </div>
+            <a href="#" onclick="form_ajax()" class="btn btn-default">执行任务</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+<form action="{{ form_url }}" method="post">{% csrf_token %}
+    {% include './_field_host_roles.html' %}
+    {% include 'includes/form_field.html' %}
+    <input class="btn btn-default" id="submit" name="commit" type="submit" value="保存">
+    <a href="/{{ class_name }}" class="btn btn-default">返回</a>
+</form>
+

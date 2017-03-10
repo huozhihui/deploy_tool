@@ -1,0 +1,61 @@
+{% include "base/_parent.html" %}
+{% block custom_js %}
+<script>
+    // 隐藏参数
+    var hide_fields = ['id_home', 'id_shell', 'id_system_0'];
+
+    // 初始化页面
+    $(function () {
+        set_fields(hide_fields, 'hide');
+        if (hide_fields.length > 0) {
+            a = $('<a/>', {
+                href: '#',
+                onclick: 'show_hidden_fields(true); return false',
+                text: '查看默认参数',
+            })
+            $('#default_params').append(a)
+        }
+
+
+        // 操作方式
+        $('[id^=id_remove_]').each(function () {
+            $(this).click(function () {
+                // 点击删除用户时
+                if ($(this).val() == 'yes') {
+                    $('#default_params').children('a').hide();
+                    $('#id_password').parent().hide();
+                    set_fields(hide_fields, 'hide');
+                } else {
+                    $('#default_params').children('a').show();
+                    $('#id_password').parent().show();
+                    set_fields(hide_fields, 'hide');
+                }
+            })
+        })
+
+        // 用户名称
+        $('#id_name').keyup(function () {
+            input = $(this).val();
+            if (input == '') {
+                $('#id_home').val('')
+            } else {
+                $('#id_home').val("/home/" + input)
+            }
+        })
+    })
+
+    // 显示隐藏字段
+    function show_hidden_fields(flag) {
+        if (flag) {
+            $('#default_params').children('a').text('隐藏默认参数')
+            $('#default_params').children('a').attr('onclick', 'show_hidden_fields(false); return false')
+            set_fields(hide_fields, 'show');
+        } else {
+            $('#default_params').children('a').text('查看默认参数')
+            $('#default_params').children('a').attr('onclick', 'show_hidden_fields(true); return false')
+            set_fields(hide_fields, 'hide');
+        }
+    }
+
+</script>
+{% endblock %}

@@ -1,0 +1,30 @@
+- home_page:
+    name: "首页"
+    url: "/"
+    i_class: "fa fa-home fa-fw"
+- base_operations:
+    name: "基础操作"
+    url: '#'
+    i_class: 'fa fa-laptop fa-fw'
+    span_class: 'fa arrow'
+    children:
+    - user:
+          name: "用户"
+          url: '/user_operate'
+    - group:
+          name: "组"
+          url: '/group_operate'
+    - cmd:
+          name: "命令"
+          url: '/cmd_operate'
+    - file:
+          name: "文件"
+          url: '/file_operate'
+    - cron:
+          name: "定时"
+          url: '/cron_operate'
+
+
+
+
+  

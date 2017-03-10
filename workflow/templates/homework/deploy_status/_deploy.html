@@ -1,0 +1,31 @@
+{% extends "extends/row_col_lg_12.html" %}
+{% block panel-heading %}部署状态{% endblock %}
+{% block alert-msg %}{% endblock %}
+{% block content %}
+    <div class="dataTable_wrapper scroll">
+        <table id="t_deploy" class="table table-hover">
+            <thead>
+            <tr>
+                {% include './_th.html' %}
+                <th>剩余时间</th>
+                <th></th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in deploy_list %}
+                <tr id='tr_{{ obj.id }}' class="{% cycle 'odd' 'even' %} gradeX">
+                    {% include './_td.html' %}
+                    <td>{{ obj.rest_time }}</td>
+                    <td></td>
+                    <td class="center">
+                        <a href="#" data-target="#myModal" data-toggle="modal"
+                           onclick="show_dialog('{% url 'homework_deploy_log' obj.id %}')" remote="true">详细</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% include 'includes/use_dialog.html' %}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "extends/base_page.html" %}
+{% block title %}{{ homework.name }}{% endblock %}
+{% block page-header %}{{ homework.name }}{% endblock %}
+{{% block panel-body %}
+    <ul id="ul_tab" class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="{% ifequal request.session.tab_active 1 %}active {% endifequal %}">
+            <a href="/homework/select_role" role="tab">
+                一、选择角色
+            </a>
+        </li>
+        <li role="presentation" class="{% ifequal request.session.tab_active 2 %}active {% endifequal %}">
+            <a href="/homework/config_params/" role="tab">
+                二、配置参数
+            </a>
+        </li>
+        <li role="presentation" class="{% ifequal request.session.tab_active 3 %}active {% endifequal %}">
+            <a href="/homework/confirm_deploy" role="tab">
+                三、确认部署
+            </a>
+        </li>
+        <li role="presentation" class="{% ifequal request.session.tab_active 4 %}active {% endifequal %}">
+            <a href="{% url 'homework_deploy_status' %}" role="tab">
+                四、操作完成
+            </a>
+        </li>
+        <!--<li role="presentation" class="{% ifequal request.session.tab_active 5 %}active {% endifequal %}">-->
+            <!--<a href="/task_log/select" role="tab">-->
+                <!--五、操作完成-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="first">
+            <br/>
+            {% include 'includes/alert_msg.html' %}
+            {% block tab-pane %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                {% block panel-heading-1 %}{% endblock %}
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                {% block panel-body-1 %}
+                                    {% block content %}{% endblock %}
+                                {% endblock %}
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            {% endblock %}
+            {% block form %}{% endblock %}
+        </div>
+        {#        <div role="tabpanel" class="tab-pane" id="second">profile</div>#}
+        {#        <div role="tabpanel" class="tab-pane" id="third">message</div>#}
+        {#        <div role="tabpanel" class="tab-pane" id="fourth">setting</div>#}
+        {#        <div role="tabpanel" class="tab-pane" id="fifth">setting</div>#}
+    </div>
+
+{% endblock %}
+

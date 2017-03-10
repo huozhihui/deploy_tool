@@ -1,0 +1,22 @@
+{% extends "extends/row_col_lg_12.html" %}
+{% block panel-heading %}节点列表{% endblock %}
+{% block alert-msg %}{% endblock %}
+{% block content %}
+    <div class="dataTable_wrapper scroll">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>序号</th>
+                {% include './_th.html' %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in task_logs %}
+                <td>{{ forloop.counter }}</td>
+                {% include './_td.html' %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

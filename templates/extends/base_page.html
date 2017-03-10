@@ -1,0 +1,41 @@
+{% extends "extends/base.html" %}
+<title>{% block title %}{% endblock %}</title>
+{% block body %}
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        {% include 'includes/header_logo.html' %}
+        {% include 'includes/header_right.html' %}
+        {% include 'includes/menu.html' %}
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header fs24">{% block page-header %}{% endblock %}</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {% block panel-heading %}{% endblock %}
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        {% block panel-body %}{% endblock %}
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "extends/table.html" %}
+{% block title %}{{ title_name }}{% endblock %}
+{% block page-header %}{{ title_name }}{% endblock %}
+{% block content %}
+    <div class="dataTable_wrapper">
+        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+            <tr>
+                <th>任务号</th>
+                <th>应用名称</th>
+                <th>用户</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in object_list %}
+                <tr {% ifequal tid obj.id %}style="color:blue;"{% endifequal %} class="{% cycle 'odd' 'even' %} gradeX">
+                    <td>{{ obj.uuid }}</td>
+                    <td>{{ obj.homework.name }}</td>
+                    <td>{{ obj.user.username }}</td>
+                    <td>
+                        {{ obj.status_name }}
+                    </td>
+                    <td class="center">
+                        {% ifequal tid obj.id %}
+                            <a href="{% url 'task_continue_deploy' obj.id %}" class="btn btn-default">继续部署</a>
+                        {% endifequal %}
+                        <a href="/{{ class_name }}/delete/{{ obj.id }}" data-del="true" class="btn btn-default">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {#    <br/>#}
+    {#    <a href="/{{ class_name }}/new" class="btn btn-default">添加</a>#}
+{% endblock %}

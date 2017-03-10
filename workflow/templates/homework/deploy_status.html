@@ -1,0 +1,8 @@
+{% extends "extends/tab.html" %}
+{% block tab-pane %}
+    {% include './deploy_status/_deploy.html' %}
+    {% include './deploy_status/_result.html' %}
+{% endblock %}
+{% block custom_js %}
+    {% include './deploy_status/_js.html' %}
+{% endblock %}

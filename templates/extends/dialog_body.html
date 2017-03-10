@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title" id="myModalLabel">{{ dialog_title }}</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        {% block body %}
+        <div style="width: 90%; margin-left: 5%">
+            <form action="{{ form_url }}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="come_from" value="{{ request.META.HTTP_REFERER }}">
+                {% include "includes/form_field.html" %}
+                <input class="btn btn-default" id="application_submit" name="commit" type="submit" value="保存">
+                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+            </form>
+        </div>
+        {% endblock %}
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>

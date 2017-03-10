@@ -1,0 +1,90 @@
+/* 设置字体大小 */
+.fs14 {
+    font-size: 14px;
+}
+
+.fs16 {
+    font-size: 16px;
+}
+
+.fs18 {
+    font-size: 18px;
+}
+
+.fs24 {
+    font-size: 24px;
+}
+
+/* 设置margin */
+.mt20 {
+    margin-top: 20px;
+}
+
+/* 设置颜色 */
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+/* 设置宽度 */
+.wth120 {
+    width: 120px;
+}
+
+.wth130 {
+    width: 130px;
+}
+
+.wth_p10 {
+    width: 10%;
+}
+
+.wth_p80 {
+    width: 80%;
+}
+
+.wth140 {
+    width: 10%;
+}
+
+.ok, .changed {
+    color: green;
+}
+
+.failed, .unreachable {
+    color: red;
+}
+
+div#reload {
+    text-align: center;
+    position: fixed;
+    left: -1px;
+    top: 1px;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+#reload img {
+    top: 50%;
+    position: absolute;
+}
+
+.scroll {
+    max-height: 400px;
+    overflow: auto;
+}
+
+div.dialog tr.cust_tr {
+    display: block;
+    padding: 15px;
+}
+
+div.dialog tr.cust_tr td:first-child {
+    width: 80px;
+    text-align: right;
+    vertical-align: top;
+}

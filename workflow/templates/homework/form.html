@@ -1,0 +1,15 @@
+{% extends "extends/table.html" %}
+{% load ext_template %}
+{% block title %}{{ title_name }}{% endblock %}
+{% block page-header %}{{ operation }}{{ title_name }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6">
+            <form action="" method="post">{% csrf_token %}
+                {% include 'includes/form_field.html' %}
+                <input class="btn btn-default" id="submit" name="commit" type="submit" value="保存">
+                <a href="/{{ class_name }}" class="btn btn-default">返回</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

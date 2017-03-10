@@ -1,0 +1,21 @@
+{% include "base/_parent.html" %}
+{% block custom_js %}
+<script>
+    // 隐藏参数
+    var hide_fields = ['id_owner', 'id_group', 'id_mode'];
+
+    // 初始化页面
+    $(function () {
+        if (hide_fields.length > 0) {
+            a = $('<a/>', {
+                href: '#',
+                onclick: 'show_hidden_fields(true); return false',
+                text: '查看默认参数',
+            })
+            $('#default_params').append(a)
+        }
+        set_fields(hide_fields, 'hide');
+    })
+
+</script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "extends/client.html" %}
+{% block title %}{{ title_name }}{% endblock %}
+{% block page-header %}{{ title_name }}{% endblock %}
+{% block page_wrapper-row %}
+{% include 'base/_host.html' %}
+{% include "./_form.html" %}
+{% include 'base/_update_result_reload.html' %}
+{% endblock %}

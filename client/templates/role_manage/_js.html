@@ -1,0 +1,12 @@
+<script>
+    $(function () {
+        // 编辑时候,勾选对应复选框
+        var select_role = "{{role_manage.dynamic_vars}}";
+        $('[id^=id_dynamic_var_]').each(function () {
+            val = $(this).val()
+            if (select_role.indexOf(val) >= 0) {
+                $(this).attr('checked', 'checked')
+            }
+        })
+    })
+</script>

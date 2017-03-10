@@ -1,0 +1,26 @@
+{% extends 'extends/dialog_body.html' %}
+
+{% block body %}
+    <div class="dialog">
+        <table style="width: 100%">
+            <tbody>
+            <tr class="cust_tr">
+                <td>节点IP：</td>
+                <td>{{ task_log.host.ip }}</td>
+            </tr>
+            <tr class="cust_tr">
+                <td>角色：</td>
+                <td>{{ task_log.role_manage.name }}</td>
+            </tr>
+            <tr class="cust_tr">
+                <td>运行：</td>
+                <td>{{ task_log.status_name }}</td>
+            </tr>
+            <tr class="cust_tr">
+                <td>详细：</td>
+                <td>{{ task_log.content }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

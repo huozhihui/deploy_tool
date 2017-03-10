@@ -1,0 +1,18 @@
+{% load ext_template %}
+{% for field in form.hidden_fields %}
+    <div class="form-group">
+        {{ field }}
+    </div>
+{% endfor %}
+{% for field in form.visible_fields %}
+    <div class="form-group">
+        {% if field.field.required %}
+            <span class="red">*</span>
+        {% endif %}
+        {{ field.label_tag }}{{ field|addcss:"form-control" }}
+        {{ field.errors }}
+        {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}

@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label for="id_role_names">角色:</label>
+    <select class="form-control" id="id_role_id" name="role_id">
+        <option value="0"></option>
+        {% for role in role_manages %}
+            <option value="{{ role.id }}"
+                    {% ifequal role.id parameter.role_manage_id %}selected{% endifequal %}>
+                {{ role.name }}
+            </option>
+        {% endfor %}
+    </select>
+</div>

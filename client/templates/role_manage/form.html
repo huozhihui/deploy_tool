@@ -1,0 +1,14 @@
+{% extends "extends/table.html" %}
+{% load ext_template %}
+{% block title %}{{ title_name }}{% endblock %}
+{% block page-header %}{{ operation }}{{ title_name }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6">
+            {% include "./_form.html" %}
+        </div>
+    </div>
+{% endblock %}
+{% block custom_js %}
+    {% include './_js.html' %}
+{% endblock %}

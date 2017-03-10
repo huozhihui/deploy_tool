@@ -1,0 +1,20 @@
+<script>
+{#    function check_deploy() {#}
+{#        var flag = false;#}
+{#        $.ajax({#}
+{#            url: "/homework/before_deploy_check",#}
+{#            method: "get",#}
+{#            dataType: 'json',#}
+{#            async: false,#}
+{#            success: function (response) {#}
+{#                if (response.msg == 'success') {#}
+{#                    flag = true;#}
+{#                } else {#}
+{#                    $('div[role=alert]').removeClass('hidden');#}
+{#                    $('div[role=alert]').children('strong').text(response.msg);#}
+{#                }#}
+{#            }#}
+{#        });#}
+{#        return flag;#}
+{#    }#}
+</script>

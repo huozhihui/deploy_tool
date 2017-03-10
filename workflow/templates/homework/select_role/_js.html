@@ -1,0 +1,11 @@
+<script>
+    // 提交表单
+    function submit_form() {
+        if ($('input[id^=client_node_]:checked').length > 0) {
+            $('form').submit()
+        } else {
+            alert('请选择要部署的角色。')
+            return false
+        }
+    }
+</script>

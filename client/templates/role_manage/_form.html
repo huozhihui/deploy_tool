@@ -1,0 +1,46 @@
+<form action="" method="post">{% csrf_token %}
+    {% include 'includes/form_field.html' %}
+    <div class="form-group">
+        <label for="id_dynamic_vars">动态变量:</label>
+        <table>
+            <tr>
+                {% for var in dynamic_vars %}
+                    <td>
+                        <label title="{{ var.name }}" style="width: 150px" for="id_dynamic_var_{{ forloop.counter }}">
+                            <input id="id_dynamic_var_{{ forloop.counter }}" name="dynamic_vars" type="checkbox"
+                                   value="{{ var.name }}">
+                            {{ var.name|truncatechars:15 }}
+                        </label>&nbsp;&nbsp;
+                    </td>
+                    {% ifnotequal forloop.counter|divisibleby:'4'  0 %}
+                        </tr>
+                        <tr>
+                    {% endifnotequal %}
+                {% endfor %}
+        </table>
+    </div>
+    <div class="form-group">
+        <span class="red">*</span>
+        <label for="id_playbook">应用:</label>
+        &nbsp;
+        <table>
+            <tr>
+                {% for app in playbook_list %}
+                    <td>
+                        <label title="{{ app }}" style="width: 300px" for="id_playbook_{{ forloop.counter }}"> &nbsp;&nbsp;
+                            <input id="id_playbook_{{ forloop.counter }}" name="playbook" type="radio"
+                                   value="{{ app }}" {% ifequal role_manage.playbook app %}checked{% endifequal %}
+                                   required>
+                            {{ app|truncatechars:30 }}
+                        </label>
+                    </td>
+                    {% ifnotequal forloop.counter|divisibleby:'2'  0 %}
+                        </tr>
+                        <tr>
+                    {% endifnotequal %}
+                {% endfor %}
+        </table>
+    </div>
+    <input class="btn btn-default" id="submit" name="commit" type="submit" value="保存">
+    <a href="/{{ class_name }}" class="btn btn-default">返回</a>
+</form>

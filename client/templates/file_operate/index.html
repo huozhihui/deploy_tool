@@ -1,0 +1,21 @@
+{% include "base/_parent.html" %}
+{% block custom_js %}
+<script>
+    // 隐藏参数
+    var hide_fields = ['id_src'];
+
+    $(function () {
+        set_fields(hide_fields, 'hide');
+        $('#id_state').change(function () {
+            var v = $(this).val();
+            if (v == 'link' || v == 'hard') {
+                set_fields(hide_fields, 'show');
+            } else {
+                set_fields(hide_fields, 'hide');
+            }
+        })
+    })
+
+
+</script>
+{% endblock %}

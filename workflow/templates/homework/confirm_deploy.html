@@ -1,0 +1,24 @@
+{% extends "extends/tab.html" %}
+{% block tab-pane %}
+    {% include './confirm_deploy/_node.html' %}
+    {% include './confirm_deploy/_params.html' %}
+    <div>
+        部署完成后,是否重启部署成功的节点?
+        &nbsp;&nbsp;
+        <input type="radio" name="reboot" id="reboot_yes" value="yes" checked="checked">&nbsp;
+        <label for="reboot_yes">是</label>
+        &nbsp;&nbsp;
+        <input type="radio" name="reboot" id="reboot_no" value="no">&nbsp;
+        <label for="reboot_no">否</label>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center;">
+            <a href="{% url 'homework_deploy_status' %}" class="btn btn-default">开始部署</a>
+            {#            <a href="{% url 'homework_deploy_status' %}" onclick='return check_deploy();'#}
+            {#               class="btn btn-default">开始部署</a>#}
+        </div>
+    </div>
+{% endblock %}
+{% block custom_js %}
+    {% include './confirm_deploy/_js.html' %}
+{% endblock %}

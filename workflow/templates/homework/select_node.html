@@ -1,0 +1,54 @@
+{% extends "extends/tab.html" %}
+{% block title %}{{ title_name }}{% endblock %}
+{% block page-header %}{{ title_name }}{% endblock %}
+{% block content %}
+    <form id="confirm_node_form" action="{{ form_url }}" method="post">
+        {% csrf_token %}
+        <div class="dataTable_wrapper scroll">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <!--<th>序号</th>-->
+                    <th>
+                        <input id="all" name="all" type="checkbox" value="1">
+                        <label for="all" onclick="check_all()">
+                            全选/取消
+                        </label>
+                    </th>
+                    {% include './select_node/_th.html' %}
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in object_list %}
+                    <tr class="{% cycle 'odd' 'even' %} gradeX">
+                        <td>
+                            <input id="client_node_{{ forloop.counter }}" type="checkbox" name="node"
+                                   value="{{ obj.id }}"
+                                   {% if obj.id in select_nodes %}checked="checked" {% endif %}>
+                        </td>
+                        {% include './select_node/_td.html' %}
+                        <td class="center">
+                            <a href="/{{ class_name }}/edit/{{ obj.id }}" class="btn btn-default">编辑</a>
+                            <a href="/{{ class_name }}/delete/{{ obj.id }}" data-del="true"
+                               class="btn btn-default">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br/>
+        {#    <input class="btn btn-default" name="commit" type="submit" value="确认">#}
+        <a href="#" class="btn btn-default" onclick="submit_form()">确认</a>
+        <a href="#" data-target="#myModal" data-toggle="modal" onclick="show_dialog()" remote="true"
+           class="btn btn-default">添加</a>
+    </form>
+    {% include 'includes/use_dialog.html' %}
+{% endblock %}
+{% block custom_js %}
+    {% include 'host/_js.html' %}
+    {% include './select_node/_js.html' %}
+{% endblock %}
+
+

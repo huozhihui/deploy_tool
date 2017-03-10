@@ -1,0 +1,13 @@
+{% extends 'extends/dialog_body.html' %}
+{% block body %}
+    <div style="width: 90%; margin-left: 5%">
+        <form action="{{ form_url }}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="come_from" value="{{ request.META.HTTP_REFERER }}">
+            {% include "includes/form_field.html" %}
+            {% include './_field_role_name.html' %}
+            <input class="btn btn-default" id="application_submit" name="commit" type="submit" value="保存">
+            <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+        </form>
+    </div>
+{% endblock %}

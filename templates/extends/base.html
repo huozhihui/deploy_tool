@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'includes/load_css.html' %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% include 'includes/load_js.html' %}
+{% block custom_js %}{% endblock %}
+<script>
+    $(function(){
+        $('a[data-del=true]').each(function () {
+            $(this).on('click', function () {
+                return confirm('确认删除?');
+            });
+        })
+    })
+    </script>
+</body>
+
+</html>

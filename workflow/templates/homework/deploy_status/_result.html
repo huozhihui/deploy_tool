@@ -1,0 +1,35 @@
+{% extends "extends/row_col_lg_12.html" %}
+{% block panel-heading %}部署结果{% endblock %}
+{% block alert-msg %}{% endblock %}
+{% block content %}
+    <div class="dataTable_wrapper scroll">
+        <table id="t_result" class="table table-hover">
+            <thead>
+            <tr>
+                {% include './_th.html' %}
+                <th>耗时(s)</th>
+                <th></th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in result_list %}
+                <tr id='tr_{{ obj.id }}'
+                    class="{% cycle 'odd' 'even' %} gradeX {% ifequal obj.status 2 %}green{% else %}red{% endifequal %}">
+                    {% include './_td.html' %}
+                    <td>{{ obj.use_time }}</td>
+                    <td></td>
+                    <td class="center">
+                        {% if obj.status > 2 %}
+                            <a href="#" onclick="retry_deploy({{ obj.id }})">重试</a>
+                        {% endif %}
+                        <a href="#" data-target="#myModal" data-toggle="modal"
+                           onclick="show_dialog('{% url 'homework_deploy_log' obj.id %}')" remote="true">详细</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% include 'includes/use_dialog.html' %}
+{% endblock %}
