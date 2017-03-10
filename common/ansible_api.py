@@ -44,7 +44,6 @@ class ResultCallback(CallbackBase):
                 status = 'changed'
             stdout = self._get_result(result._result, status)
         else:
-            print result._result
             stderr = result._result.get('stderr', '') or result._result.get('msg', '')
             color_style = 'red'
 

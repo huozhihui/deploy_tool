@@ -36,6 +36,9 @@ class Options(object):
 
 
 def api(tid, yml_list, extra_vars={}):
+    print 'task id: {tid}'.format(tid=tid)
+    print 'yml path: {yml}'.format(yml=yml_list)
+    print 'extra_vars: {extra_vars}'.format(extra_vars=extra_vars)
     options = Options()
     results_callback = ResultCallback(tid)
     playbooks = yml_list  # 这里是一个列表, 因此可以运行多个playbook
