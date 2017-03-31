@@ -1,0 +1,852 @@
+*** Starting uWSGI 2.0.13.1 (64bit) on [Wed Mar 22 14:59:48 2017] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 6.1.0 (clang-602.0.53) on 19 September 2016 16:25:53
+os: Darwin-14.3.0 Darwin Kernel Version 14.3.0: Mon Mar 23 11:59:05 PDT 2015; root:xnu-2782.20.48~5/RELEASE_X86_64
+nodename: mac-host.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/huozhihui/zhi/django_project
+writing pidfile to /Users/huozhihui/zhi/django_project/devops_tool/log/devops_tool.pid
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /Users/huozhihui/zhi/django_project/devops_tool/
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 4864
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /Users/huozhihui/zhi/django_project/devops_tool/log/devops_tool.sock fd 3
+Python version: 2.7.10 (default, Jul 13 2015, 12:05:58)  [GCC 4.2.1 Compatible Apple LLVM 6.1.0 (clang-602.0.53)]
+Set PythonHome to /Users/huozhihui/zhi/django_project
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fdf486013d0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 800360 bytes (781 KB) for 10 cores
+*** Operational MODE: preforking ***
+/Users/huozhihui/zhi/django_project
+['.', '', '/Users/huozhihui/zhi/django_project/lib/python27.zip', '/Users/huozhihui/zhi/django_project/lib/python2.7/', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-darwin', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-mac', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-mac/lib-scriptpackages', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-tk', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-old', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-dynload', '/Users/huozhihui/zhi/django_project/devops_tool', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages']
+Traceback (most recent call last):
+  File "./devops_tool/wsgi.py", line 20, in <module>
+    from django.core.wsgi import get_wsgi_application
+  File "/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/django/__init__.py", line 1, in <module>
+    from __future__ import unicode_literals
+ImportError: No module named __future__
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 71564)
+spawned uWSGI worker 1 (pid: 71565, cores: 1)
+spawned uWSGI worker 2 (pid: 71566, cores: 1)
+spawned uWSGI worker 3 (pid: 71567, cores: 1)
+spawned uWSGI worker 4 (pid: 71568, cores: 1)
+spawned uWSGI worker 5 (pid: 71569, cores: 1)
+spawned uWSGI worker 6 (pid: 71570, cores: 1)
+spawned uWSGI worker 7 (pid: 71571, cores: 1)
+spawned uWSGI worker 8 (pid: 71572, cores: 1)
+spawned uWSGI worker 9 (pid: 71573, cores: 1)
+spawned uWSGI worker 10 (pid: 71574, cores: 1)
+*** Stats server enabled on 127.0.0.1:9090 fd: 27 ***
+Wed Mar 22 15:03:48 2017 - uWSGI worker 9 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 5 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 8 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 7 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 6 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 15:03:48 2017 - uWSGI worker 10 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+*** Starting uWSGI 2.0.13.1 (64bit) on [Wed Mar 22 17:39:33 2017] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 6.1.0 (clang-602.0.53) on 19 September 2016 16:25:53
+os: Darwin-14.3.0 Darwin Kernel Version 14.3.0: Mon Mar 23 11:59:05 PDT 2015; root:xnu-2782.20.48~5/RELEASE_X86_64
+nodename: mac-host.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/huozhihui/zhi/django_project
+writing pidfile to /Users/huozhihui/zhi/django_project/devops_tool/log/devops_tool.pid
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /Users/huozhihui/zhi/django_project/devops_tool/
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 4864
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /Users/huozhihui/zhi/django_project/devops_tool/log/devops_tool.sock fd 3
+Python version: 2.7.10 (default, Jul 13 2015, 12:05:58)  [GCC 4.2.1 Compatible Apple LLVM 6.1.0 (clang-602.0.53)]
+Set PythonHome to /Users/huozhihui/zhi/django_project
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7f834bf004a0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 800360 bytes (781 KB) for 10 cores
+*** Operational MODE: preforking ***
+/Users/huozhihui/zhi/django_project
+['.', '', '/Users/huozhihui/zhi/django_project/lib/python27.zip', '/Users/huozhihui/zhi/django_project/lib/python2.7', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-darwin', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-mac', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-mac/lib-scriptpackages', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-tk', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-old', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-dynload', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-darwin', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-tk', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-mac', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-mac/lib-scriptpackages', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/django_celery-3.2.0_-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/celery-3.1.25-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/kombu-3.0.37-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/amqp-1.4.9-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/anyjson-0.3.3-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/billiard-3.3.0.23-py2.7-macosx-10.10-x86_64.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/wssh-0.1.0-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages', '/Users/huozhihui/zhi/django_project/devops_tool', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages']
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x7f834bf004a0 pid: 87906 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 87906)
+spawned uWSGI worker 1 (pid: 87907, cores: 1)
+spawned uWSGI worker 2 (pid: 87908, cores: 1)
+spawned uWSGI worker 3 (pid: 87909, cores: 1)
+spawned uWSGI worker 4 (pid: 87910, cores: 1)
+spawned uWSGI worker 5 (pid: 87911, cores: 1)
+spawned uWSGI worker 6 (pid: 87912, cores: 1)
+spawned uWSGI worker 7 (pid: 87913, cores: 1)
+spawned uWSGI worker 8 (pid: 87914, cores: 1)
+spawned uWSGI worker 9 (pid: 87915, cores: 1)
+spawned uWSGI worker 10 (pid: 87916, cores: 1)
+*** Stats server enabled on 127.0.0.1:9090 fd: 27 ***
+[pid: 87916|app: 0|req: 1/1] 127.0.0.1 () {42 vars in 824 bytes} [Wed Mar 22 17:43:20 2017] GET / => generated 21715 bytes in 229 msecs (HTTP/1.1 200) 3 headers in 102 bytes (4 switches on core 0)
+Not Found: /static/bootstrap/css/bootstrap.css
+[pid: 87916|app: 0|req: 2/2] 127.0.0.1 () {40 vars in 808 bytes} [Wed Mar 22 17:43:20 2017] GET /static/bootstrap/css/bootstrap.css => generated 12939 bytes in 73 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/css/global.css
+IOError: write error
+[pid: 87916|app: 0|req: 3/3] 127.0.0.1 () {40 vars in 802 bytes} [Wed Mar 22 17:43:20 2017] GET /static/bootstrap/css/global.css => generated 8112 bytes in 31 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+Not Found: /static/bootstrap/css/dataTables.responsive.css
+Not Found: /static/bootstrap/css/metisMenu.min.css
+[pid: 87915|app: 0|req: 1/4] 127.0.0.1 () {40 vars in 816 bytes} [Wed Mar 22 17:43:20 2017] GET /static/bootstrap/css/metisMenu.min.css => generated 12951 bytes in 584 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+IOError: write error
+[pid: 87912|app: 0|req: 1/5] 127.0.0.1 () {40 vars in 832 bytes} [Wed Mar 22 17:43:20 2017] GET /static/bootstrap/css/dataTables.responsive.css => generated 8112 bytes in 584 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+Not Found: /static/bootstrap/css/font-awesome.min.css
+Wed Mar 22 17:43:21 2017 - SIGPIPE: writing to a closed pipe/socket/fd (probably the client disconnected) on request /static/bootstrap/css/font-awesome.min.css (ip 127.0.0.1) !!!
+Wed Mar 22 17:43:21 2017 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 331] during GET /static/bootstrap/css/font-awesome.min.css (127.0.0.1)
+IOError: write error
+Not Found: /static/bootstrap/js/jquery.form.min.js
+[pid: 87916|app: 0|req: 4/6] 127.0.0.1 () {40 vars in 801 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/jquery.form.min.js => generated 12951 bytes in 24 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+[pid: 87908|app: 0|req: 1/7] 127.0.0.1 () {40 vars in 822 bytes} [Wed Mar 22 17:43:20 2017] GET /static/bootstrap/css/font-awesome.min.css => generated 8112 bytes in 593 msecs (HTTP/1.1 404) 2 headers in 80 bytes (0 switches on core 0)
+Not Found: /static/bootstrap/css/dataTables.bootstrap.css
+Not Found: /static/bootstrap/js/dataTables.bootstrap.min.js
+Wed Mar 22 17:43:21 2017 - SIGPIPE: writing to a closed pipe/socket/fd (probably the client disconnected) on request /static/bootstrap/js/dataTables.bootstrap.min.js (ip 127.0.0.1) !!!
+Wed Mar 22 17:43:21 2017 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 331] during GET /static/bootstrap/js/dataTables.bootstrap.min.js (127.0.0.1)
+IOError: write error
+[pid: 87916|app: 0|req: 5/8] 127.0.0.1 () {40 vars in 819 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/dataTables.bootstrap.min.js => generated 8112 bytes in 32 msecs (HTTP/1.1 404) 2 headers in 80 bytes (0 switches on core 0)
+Not Found: /static/bootstrap/js/sb-admin-2.js
+[pid: 87916|app: 0|req: 6/9] 127.0.0.1 () {40 vars in 791 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/sb-admin-2.js => generated 12936 bytes in 26 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/js/custom.js
+[pid: 87916|app: 0|req: 7/10] 127.0.0.1 () {40 vars in 783 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/custom.js => generated 12924 bytes in 21 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+IOError: write error
+[pid: 87914|app: 0|req: 1/11] 127.0.0.1 () {40 vars in 830 bytes} [Wed Mar 22 17:43:20 2017] GET /static/bootstrap/css/dataTables.bootstrap.css => generated 8112 bytes in 715 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+Not Found: /static/bootstrap/css/sb-admin-2.css
+Wed Mar 22 17:43:21 2017 - SIGPIPE: writing to a closed pipe/socket/fd (probably the client disconnected) on request /static/bootstrap/css/sb-admin-2.css (ip 127.0.0.1) !!!
+Wed Mar 22 17:43:21 2017 - uwsgi_response_write_body_do(): Broken pipe [core/writer.c line 331] during GET /static/bootstrap/css/sb-admin-2.css (127.0.0.1)
+IOError: write error
+[pid: 87913|app: 0|req: 1/12] 127.0.0.1 () {40 vars in 810 bytes} [Wed Mar 22 17:43:20 2017] GET /static/bootstrap/css/sb-admin-2.css => generated 8112 bytes in 719 msecs (HTTP/1.1 404) 2 headers in 80 bytes (0 switches on core 0)
+Not Found: /static/bootstrap/js/websocket.js
+[pid: 87916|app: 0|req: 8/13] 127.0.0.1 () {40 vars in 789 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/websocket.js => generated 12933 bytes in 42 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/js/jquery.min.js
+[pid: 87911|app: 0|req: 1/14] 127.0.0.1 () {40 vars in 791 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/jquery.min.js => generated 12936 bytes in 648 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+Not Found: /static/bootstrap/js/jquery.form.min.js
+[pid: 87915|app: 0|req: 2/15] 127.0.0.1 () {40 vars in 801 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/jquery.form.min.js => generated 12951 bytes in 24 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /static/bootstrap/js/bootstrap.min.js
+[pid: 87910|app: 0|req: 1/16] 127.0.0.1 () {40 vars in 797 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/bootstrap.min.js => generated 12945 bytes in 375 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/js/jquery.dataTables.js
+[pid: 87907|app: 0|req: 1/17] 127.0.0.1 () {40 vars in 805 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/jquery.dataTables.js => generated 12957 bytes in 362 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/js/metisMenu.min.js
+[pid: 87909|app: 0|req: 1/18] 127.0.0.1 () {40 vars in 797 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/metisMenu.min.js => generated 12945 bytes in 380 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /static/bootstrap/js/jquery.dataTables.js
+[pid: 87915|app: 0|req: 3/19] 127.0.0.1 () {40 vars in 805 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/jquery.dataTables.js => generated 12957 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/js/dataTables.bootstrap.min.js
+[pid: 87916|app: 0|req: 9/20] 127.0.0.1 () {40 vars in 819 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/dataTables.bootstrap.min.js => generated 12978 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/js/sb-admin-2.js
+[pid: 87916|app: 0|req: 10/21] 127.0.0.1 () {40 vars in 791 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/sb-admin-2.js => generated 12936 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/js/custom.js
+[pid: 87916|app: 0|req: 11/22] 127.0.0.1 () {40 vars in 783 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/custom.js => generated 12924 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /static/bootstrap/js/websocket.js
+[pid: 87912|app: 0|req: 2/23] 127.0.0.1 () {40 vars in 789 bytes} [Wed Mar 22 17:43:21 2017] GET /static/bootstrap/js/websocket.js => generated 12933 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+[pid: 87916|app: 0|req: 12/24] 127.0.0.1 () {42 vars in 824 bytes} [Wed Mar 22 17:57:41 2017] GET / => generated 21715 bytes in 19 msecs (HTTP/1.1 200) 3 headers in 102 bytes (5 switches on core 0)
+[pid: 87916|app: 0|req: 13/25] 127.0.0.1 () {42 vars in 824 bytes} [Wed Mar 22 17:57:45 2017] GET / => generated 21715 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 102 bytes (3 switches on core 0)
+[pid: 87916|app: 0|req: 14/26] 127.0.0.1 () {42 vars in 853 bytes} [Wed Mar 22 17:57:47 2017] GET /dynamic_var => generated 21437 bytes in 18 msecs (HTTP/1.1 200) 3 headers in 102 bytes (3 switches on core 0)
+[pid: 87916|app: 0|req: 15/27] 127.0.0.1 () {42 vars in 864 bytes} [Wed Mar 22 17:57:48 2017] GET /role_manage => generated 21715 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 102 bytes (3 switches on core 0)
+[pid: 87915|app: 0|req: 4/28] 127.0.0.1 () {42 vars in 850 bytes} [Wed Mar 22 17:57:50 2017] GET /host => generated 28051 bytes in 74 msecs (HTTP/1.1 200) 3 headers in 102 bytes (5 switches on core 0)
+Wed Mar 22 18:01:50 2017 - uWSGI worker 8 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 9 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 10 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 6 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 7 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 5 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Mar 22 18:01:50 2017 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+*** Starting uWSGI 2.0.13.1 (64bit) on [Wed Mar 22 18:02:08 2017] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 6.1.0 (clang-602.0.53) on 19 September 2016 16:25:53
+os: Darwin-14.3.0 Darwin Kernel Version 14.3.0: Mon Mar 23 11:59:05 PDT 2015; root:xnu-2782.20.48~5/RELEASE_X86_64
+nodename: mac-host.local
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /Users/huozhihui/zhi/django_project/devops_tool
+writing pidfile to /Users/huozhihui/zhi/django_project/devops_tool/log/devops_tool.pid
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /Users/huozhihui/zhi/django_project/devops_tool/
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 4864
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /Users/huozhihui/zhi/django_project/devops_tool/log/devops_tool.sock fd 3
+Python version: 2.7.10 (default, Jul 13 2015, 12:05:58)  [GCC 4.2.1 Compatible Apple LLVM 6.1.0 (clang-602.0.53)]
+Set PythonHome to /Users/huozhihui/zhi/django_project
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fe819500bb0
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 800360 bytes (781 KB) for 10 cores
+*** Operational MODE: preforking ***
+/Users/huozhihui/zhi/django_project
+['.', '', '/Users/huozhihui/zhi/django_project/lib/python27.zip', '/Users/huozhihui/zhi/django_project/lib/python2.7', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-darwin', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-mac', '/Users/huozhihui/zhi/django_project/lib/python2.7/plat-mac/lib-scriptpackages', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-tk', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-old', '/Users/huozhihui/zhi/django_project/lib/python2.7/lib-dynload', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-darwin', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-tk', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-mac', '/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-mac/lib-scriptpackages', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/django_celery-3.2.0_-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/celery-3.1.25-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/kombu-3.0.37-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/amqp-1.4.9-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/anyjson-0.3.3-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/billiard-3.3.0.23-py2.7-macosx-10.10-x86_64.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages/wssh-0.1.0-py2.7.egg', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages', '/Users/huozhihui/zhi/django_project/devops_tool', '/Users/huozhihui/zhi/django_project/lib/python2.7/site-packages']
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x7fe819500bb0 pid: 88055 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 88055)
+spawned uWSGI worker 1 (pid: 88056, cores: 1)
+spawned uWSGI worker 2 (pid: 88057, cores: 1)
+spawned uWSGI worker 3 (pid: 88058, cores: 1)
+spawned uWSGI worker 4 (pid: 88059, cores: 1)
+spawned uWSGI worker 5 (pid: 88060, cores: 1)
+spawned uWSGI worker 6 (pid: 88061, cores: 1)
+spawned uWSGI worker 7 (pid: 88062, cores: 1)
+spawned uWSGI worker 8 (pid: 88063, cores: 1)
+spawned uWSGI worker 9 (pid: 88064, cores: 1)
+spawned uWSGI worker 10 (pid: 88065, cores: 1)
+*** Stats server enabled on 127.0.0.1:9090 fd: 27 ***
+[pid: 88064|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 881 bytes} [Wed Mar 22 18:02:22 2017] GET /host => generated 28051 bytes in 254 msecs (HTTP/1.1 200) 3 headers in 102 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 1/2] 127.0.0.1 () {40 vars in 793 bytes} [Thu Mar 23 15:20:46 2017] GET / => generated 21715 bytes in 352 msecs (HTTP/1.1 200) 3 headers in 102 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 2/3] 127.0.0.1 () {42 vars in 847 bytes} [Thu Mar 23 15:20:50 2017] GET /homework => generated 20768 bytes in 20 msecs (HTTP/1.1 200) 3 headers in 102 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 3/4] 127.0.0.1 () {42 vars in 887 bytes} [Thu Mar 23 15:20:52 2017] GET /homework/select_deploy/1 => generated 0 bytes in 18 msecs (HTTP/1.1 302) 5 headers in 269 bytes (2 switches on core 0)
+[pid: 88064|app: 0|req: 2/5] 127.0.0.1 () {42 vars in 879 bytes} [Thu Mar 23 15:20:52 2017] GET /homework/select_role => generated 25286 bytes in 89 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 4/6] 127.0.0.1 () {38 vars in 660 bytes} [Thu Mar 23 15:22:57 2017] GET / => generated 0 bytes in 17 msecs (HTTP/1.1 302) 4 headers in 140 bytes (1 switches on core 0)
+[pid: 88065|app: 0|req: 5/7] 127.0.0.1 () {38 vars in 703 bytes} [Thu Mar 23 15:22:57 2017] GET /accounts/login/?next=/ => generated 6120 bytes in 8 msecs (HTTP/1.1 200) 7 headers in 405 bytes (1 switches on core 0)
+[pid: 88065|app: 0|req: 6/8] 127.0.0.1 () {50 vars in 1030 bytes} [Thu Mar 23 15:23:09 2017] POST /accounts/login/?next=/ => generated 0 bytes in 46 msecs (HTTP/1.1 302) 9 headers in 552 bytes (1 switches on core 0)
+[pid: 88065|app: 0|req: 7/9] 127.0.0.1 () {44 vars in 884 bytes} [Thu Mar 23 15:23:09 2017] GET / => generated 21715 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 102 bytes (3 switches on core 0)
+[pid: 88065|app: 0|req: 8/10] 127.0.0.1 () {42 vars in 847 bytes} [Thu Mar 23 15:23:15 2017] GET /homework => generated 20768 bytes in 18 msecs (HTTP/1.1 200) 3 headers in 102 bytes (3 switches on core 0)
+[pid: 88064|app: 0|req: 3/11] 127.0.0.1 () {42 vars in 887 bytes} [Thu Mar 23 15:23:17 2017] GET /homework/select_deploy/1 => generated 0 bytes in 17 msecs (HTTP/1.1 302) 5 headers in 269 bytes (1 switches on core 0)
+[pid: 88065|app: 0|req: 9/12] 127.0.0.1 () {42 vars in 879 bytes} [Thu Mar 23 15:23:17 2017] GET /homework/select_role => generated 25286 bytes in 47 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 10/13] 127.0.0.1 () {44 vars in 910 bytes} [Thu Mar 23 15:23:46 2017] GET /homework/select_role => generated 25286 bytes in 45 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 11/14] 127.0.0.1 () {44 vars in 910 bytes} [Thu Mar 23 15:24:34 2017] GET /homework/select_role => generated 25286 bytes in 40 msecs (HTTP/1.1 200) 5 headers in 387 bytes (5 switches on core 0)
+[pid: 88065|app: 0|req: 12/15] 127.0.0.1 () {44 vars in 910 bytes} [Thu Mar 23 15:25:01 2017] GET /homework/select_role => generated 25286 bytes in 43 msecs (HTTP/1.1 200) 5 headers in 387 bytes (2 switches on core 0)
+[pid: 88064|app: 0|req: 4/16] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:26:08 2017] GET /homework/select_role => generated 25286 bytes in 50 msecs (HTTP/1.1 200) 5 headers in 387 bytes (5 switches on core 0)
+[pid: 88065|app: 0|req: 13/17] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:26:39 2017] GET /homework/select_role => generated 25290 bytes in 41 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88063|app: 0|req: 1/18] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:27:02 2017] GET /homework/select_role => generated 25286 bytes in 255 msecs (HTTP/1.1 200) 5 headers in 387 bytes (5 switches on core 0)
+[pid: 88065|app: 0|req: 14/19] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:31:35 2017] GET /homework/select_role => generated 25286 bytes in 54 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 15/20] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:32:05 2017] GET /homework/select_role => generated 25286 bytes in 43 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 16/21] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:32:46 2017] GET /homework/select_role => generated 25286 bytes in 48 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 17/22] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:33:08 2017] GET /homework/select_role => generated 25286 bytes in 51 msecs (HTTP/1.1 200) 5 headers in 387 bytes (5 switches on core 0)
+[pid: 88064|app: 0|req: 5/23] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:34:02 2017] GET /homework/select_role => generated 25286 bytes in 44 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 18/24] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:34:37 2017] GET /homework/select_role => generated 25286 bytes in 45 msecs (HTTP/1.1 200) 5 headers in 387 bytes (5 switches on core 0)
+[pid: 88065|app: 0|req: 19/25] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:34:55 2017] GET /homework/select_role => generated 25286 bytes in 43 msecs (HTTP/1.1 200) 5 headers in 387 bytes (5 switches on core 0)
+[pid: 88065|app: 0|req: 20/26] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:35:37 2017] GET /homework/select_role => generated 25286 bytes in 49 msecs (HTTP/1.1 200) 5 headers in 387 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 21/27] 127.0.0.1 () {42 vars in 891 bytes} [Thu Mar 23 15:36:22 2017] GET /homework/select_role => generated 25286 bytes in 43 msecs (HTTP/1.1 200) 5 headers in 387 bytes (3 switches on core 0)
+[pid: 88064|app: 0|req: 6/28] 127.0.0.1 () {40 vars in 793 bytes} [Fri Mar 24 10:04:04 2017] GET / => generated 24173 bytes in 62 msecs (HTTP/1.1 200) 3 headers in 102 bytes (3 switches on core 0)
+Not Found: /favicon.ico
+[pid: 88063|app: 0|req: 2/29] 127.0.0.1 () {40 vars in 772 bytes} [Fri Mar 24 10:04:05 2017] GET /favicon.ico => generated 12870 bytes in 57 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+[pid: 88065|app: 0|req: 22/30] 127.0.0.1 () {40 vars in 793 bytes} [Mon Mar 27 14:43:23 2017] GET / => generated 24173 bytes in 113 msecs (HTTP/1.1 200) 3 headers in 102 bytes (3 switches on core 0)
+[pid: 88063|app: 0|req: 3/31] 127.0.0.1 () {40 vars in 793 bytes} [Wed Mar 29 11:41:51 2017] GET / => generated 24328 bytes in 125 msecs (HTTP/1.1 200) 3 headers in 102 bytes (2 switches on core 0)
+[pid: 88063|app: 0|req: 4/32] 127.0.0.1 () {42 vars in 839 bytes} [Wed Mar 29 11:41:55 2017] GET /host => generated 28353 bytes in 107 msecs (HTTP/1.1 200) 3 headers in 102 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 23/33] 127.0.0.1 () {42 vars in 851 bytes} [Wed Mar 29 11:41:56 2017] GET /homework => generated 20047 bytes in 55 msecs (HTTP/1.1 200) 3 headers in 102 bytes (3 switches on core 0)
+[pid: 88065|app: 0|req: 24/34] 127.0.0.1 () {42 vars in 887 bytes} [Wed Mar 29 11:41:57 2017] GET /homework/select_deploy/1 => generated 0 bytes in 23 msecs (HTTP/1.1 302) 5 headers in 272 bytes (1 switches on core 0)
+[pid: 88065|app: 0|req: 25/35] 127.0.0.1 () {42 vars in 885 bytes} [Wed Mar 29 11:41:57 2017] GET /homework/confirm_deploy => generated 42576 bytes in 225 msecs (HTTP/1.1 200) 4 headers in 233 bytes (6 switches on core 0)
+[pid: 88065|app: 0|req: 26/36] 127.0.0.1 () {42 vars in 898 bytes} [Wed Mar 29 11:42:35 2017] GET /homework/deploy_status => generated 42524 bytes in 67 msecs (HTTP/1.1 200) 3 headers in 102 bytes (8 switches on core 0)
+[pid: 88065|app: 0|req: 27/37] 127.0.0.1 () {42 vars in 861 bytes} [Wed Mar 29 11:42:38 2017] GET /task => generated 20837 bytes in 20 msecs (HTTP/1.1 200) 3 headers in 102 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 28/38] 127.0.0.1 () {42 vars in 881 bytes} [Wed Mar 29 11:42:39 2017] GET /task/continue_deploy/48 => generated 0 bytes in 7 msecs (HTTP/1.1 302) 5 headers in 272 bytes (1 switches on core 0)
+[pid: 88063|app: 0|req: 5/39] 127.0.0.1 () {42 vars in 881 bytes} [Wed Mar 29 11:42:39 2017] GET /homework/confirm_deploy => generated 42454 bytes in 81 msecs (HTTP/1.1 200) 4 headers in 233 bytes (6 switches on core 0)
+[pid: 88065|app: 0|req: 29/40] 127.0.0.1 () {42 vars in 898 bytes} [Wed Mar 29 11:42:41 2017] GET /homework/deploy_status => generated 42524 bytes in 64 msecs (HTTP/1.1 200) 3 headers in 102 bytes (6 switches on core 0)
+[pid: 88065|app: 0|req: 30/41] 127.0.0.1 () {42 vars in 861 bytes} [Wed Mar 29 11:42:42 2017] GET /task => generated 20837 bytes in 25 msecs (HTTP/1.1 200) 3 headers in 102 bytes (4 switches on core 0)
+[pid: 88065|app: 0|req: 31/42] 127.0.0.1 () {42 vars in 881 bytes} [Wed Mar 29 11:42:44 2017] GET /task/continue_deploy/48 => generated 0 bytes in 6 msecs (HTTP/1.1 302) 5 headers in 272 bytes (1 switches on core 0)
+[pid: 88063|app: 0|req: 6/43] 127.0.0.1 () {42 vars in 881 bytes} [Wed Mar 29 11:42:44 2017] GET /homework/confirm_deploy => generated 42454 bytes in 81 msecs (HTTP/1.1 200) 4 headers in 233 bytes (7 switches on core 0)
+[pid: 88065|app: 0|req: 32/44] 127.0.0.1 () {42 vars in 894 bytes} [Wed Mar 29 11:42:45 2017] GET /homework/select_role => generated 28312 bytes in 68 msecs (HTTP/1.1 200) 5 headers in 387 bytes (5 switches on core 0)
+[pid: 88065|app: 0|req: 33/45] 127.0.0.1 () {50 vars in 1069 bytes} [Wed Mar 29 11:42:53 2017] POST /homework/confirm_role => generated 43239 bytes in 258 msecs (HTTP/1.1 200) 5 headers in 387 bytes (6 switches on core 0)
+[pid: 88065|app: 0|req: 34/46] 127.0.0.1 () {42 vars in 898 bytes} [Wed Mar 29 11:42:55 2017] GET /homework/confirm_deploy => generated 45195 bytes in 86 msecs (HTTP/1.1 200) 4 headers in 233 bytes (6 switches on core 0)
+[pid: 88064|app: 0|req: 7/47] 127.0.0.1 () {42 vars in 898 bytes} [Wed Mar 29 11:43:03 2017] GET /homework/deploy_status => generated 34236 bytes in 155 msecs (HTTP/1.1 200) 4 headers in 233 bytes (5 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 35/48] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:06 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88064|app: 0|req: 8/49] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:06 2017] GET /deploy_status/526 => generated 12888 bytes in 19 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88062|app: 0|req: 1/50] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:06 2017] GET /deploy_status/527 => generated 12888 bytes in 327 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88064|app: 0|req: 9/51] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88062|app: 0|req: 2/52] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/529 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88063|app: 0|req: 7/53] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/530 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 10/54] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 36/55] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 37/56] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/533 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88062|app: 0|req: 3/57] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 38/58] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 39/59] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/527 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88062|app: 0|req: 4/60] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:07 2017] GET /deploy_status/528 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 40/61] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:08 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 41/62] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:08 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 42/63] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:08 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 43/64] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:10 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88062|app: 0|req: 5/65] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:10 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 44/66] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:10 2017] GET /deploy_status/529 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88063|app: 0|req: 8/67] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:11 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88062|app: 0|req: 6/68] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:11 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88064|app: 0|req: 11/69] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:11 2017] GET /deploy_status/532 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 45/70] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:11 2017] GET /deploy_status/525 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88062|app: 0|req: 7/71] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:11 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 46/72] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:11 2017] GET /deploy_status/525 => generated 12888 bytes in 17 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88062|app: 0|req: 8/73] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:12 2017] GET /deploy_status/533 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 12/74] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:12 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 47/75] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:12 2017] GET /deploy_status/529 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 48/76] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:12 2017] GET /deploy_status/532 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 49/77] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:12 2017] GET /deploy_status/527 => generated 12888 bytes in 18 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 50/78] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:12 2017] GET /deploy_status/526 => generated 12888 bytes in 24 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 51/79] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/527 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 52/80] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88063|app: 0|req: 9/81] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/530 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88064|app: 0|req: 13/82] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 53/83] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88064|app: 0|req: 14/84] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/529 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88064|app: 0|req: 15/85] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/526 => generated 12888 bytes in 18 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 54/86] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/532 => generated 12888 bytes in 31 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88062|app: 0|req: 9/87] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:13 2017] GET /deploy_status/533 => generated 12888 bytes in 56 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 55/88] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/527 => generated 12888 bytes in 45 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 16/89] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/531 => generated 12888 bytes in 17 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88063|app: 0|req: 10/90] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/529 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88063|app: 0|req: 11/91] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/529 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 17/92] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88064|app: 0|req: 18/93] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/532 => generated 12888 bytes in 24 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 56/94] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/528 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 57/95] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/530 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 58/96] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/533 => generated 12888 bytes in 18 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 59/97] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:14 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88063|app: 0|req: 12/98] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:15 2017] GET /deploy_status/528 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 60/99] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:15 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 61/100] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:15 2017] GET /deploy_status/525 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 19/101] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:15 2017] GET /deploy_status/530 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 62/102] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:15 2017] GET /deploy_status/530 => generated 12888 bytes in 17 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 63/103] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:15 2017] GET /deploy_status/530 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88063|app: 0|req: 13/104] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/528 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 64/105] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/526 => generated 12888 bytes in 20 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 65/106] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/527 => generated 12888 bytes in 17 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 20/107] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/533 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (4 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 66/108] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 67/109] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/526 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88064|app: 0|req: 21/110] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/532 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88063|app: 0|req: 14/111] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/527 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88062|app: 0|req: 10/112] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/527 => generated 12888 bytes in 27 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 68/113] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88064|app: 0|req: 22/114] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/527 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 69/115] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 70/116] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:16 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88064|app: 0|req: 23/117] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 71/118] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88064|app: 0|req: 24/119] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 72/120] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/525 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 73/121] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/528 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 74/122] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/525 => generated 12888 bytes in 21 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 25/123] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/533 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 75/124] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 76/125] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/531 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 77/126] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/530 => generated 12888 bytes in 19 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 78/127] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:17 2017] GET /deploy_status/529 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 79/128] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/527 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88064|app: 0|req: 26/129] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/528 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 27/130] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/530 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88062|app: 0|req: 11/131] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/532 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 80/132] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/532 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 81/133] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 82/134] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/525 => generated 12888 bytes in 21 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88064|app: 0|req: 28/135] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/529 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88063|app: 0|req: 15/136] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/533 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 83/137] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:18 2017] GET /deploy_status/530 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88064|app: 0|req: 29/138] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:19 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88063|app: 0|req: 16/139] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:19 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (4 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88063|app: 0|req: 17/140] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:19 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 30/141] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:19 2017] GET /deploy_status/530 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 31/142] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:19 2017] GET /deploy_status/531 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 84/143] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:19 2017] GET /deploy_status/526 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88063|app: 0|req: 18/144] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:19 2017] GET /deploy_status/527 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 85/145] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:20 2017] GET /deploy_status/529 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 86/146] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:20 2017] GET /deploy_status/532 => generated 12888 bytes in 22 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 87/147] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:20 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88064|app: 0|req: 32/148] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:20 2017] GET /deploy_status/528 => generated 12888 bytes in 31 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 88/149] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:20 2017] GET /deploy_status/528 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 89/150] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:20 2017] GET /deploy_status/525 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 33/151] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:20 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 34/152] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 90/153] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 91/154] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/528 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 92/155] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/527 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88063|app: 0|req: 19/156] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 93/157] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/531 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88064|app: 0|req: 35/158] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/529 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 94/159] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/526 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 95/160] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:21 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 36/161] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/530 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 96/162] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 97/163] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/530 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 98/164] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/527 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 99/165] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/528 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 100/166] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/529 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 101/167] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/525 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 102/168] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/527 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 37/169] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/531 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 103/170] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/533 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 104/171] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:22 2017] GET /deploy_status/526 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 105/172] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/525 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 106/173] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88063|app: 0|req: 20/174] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/529 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 107/175] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/532 => generated 12888 bytes in 17 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 108/176] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 109/177] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 110/178] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/527 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 111/179] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/530 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 112/180] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/529 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 113/181] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/531 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 114/182] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:23 2017] GET /deploy_status/528 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88064|app: 0|req: 38/183] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:24 2017] GET /deploy_status/532 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88064|app: 0|req: 39/184] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:24 2017] GET /deploy_status/527 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 115/185] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:24 2017] GET /deploy_status/525 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88063|app: 0|req: 21/186] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:24 2017] GET /deploy_status/530 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 40/187] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:24 2017] GET /deploy_status/531 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88063|app: 0|req: 22/188] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:24 2017] GET /deploy_status/532 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 116/189] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:24 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 117/190] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:25 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88064|app: 0|req: 41/191] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:25 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 42/192] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:25 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 118/193] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:25 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 43/194] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:25 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 44/195] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:25 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 119/196] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:25 2017] GET /deploy_status/529 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 120/197] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:25 2017] GET /deploy_status/525 => generated 12888 bytes in 10 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 121/198] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88063|app: 0|req: 23/199] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/528 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88062|app: 0|req: 12/200] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/526 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 122/201] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/527 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 123/202] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/532 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 124/203] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 125/204] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88062|app: 0|req: 13/205] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/525 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 126/206] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 45/207] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/530 => generated 12888 bytes in 17 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 127/208] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:26 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88063|app: 0|req: 24/209] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 128/210] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/527 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88063|app: 0|req: 25/211] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/525 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 129/212] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 130/213] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/532 => generated 12888 bytes in 19 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 131/214] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 132/215] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/527 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 133/216] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 134/217] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/533 => generated 12888 bytes in 18 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 135/218] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/527 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 136/219] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:27 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 46/220] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 137/221] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 138/222] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 139/223] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88064|app: 0|req: 47/224] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/526 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88064|app: 0|req: 48/225] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/527 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 140/226] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 49/227] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/531 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 141/228] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:28 2017] GET /deploy_status/525 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 142/229] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:29 2017] GET /deploy_status/530 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88064|app: 0|req: 50/230] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:29 2017] GET /deploy_status/528 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 143/231] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:29 2017] GET /deploy_status/531 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 144/232] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:29 2017] GET /deploy_status/525 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88063|app: 0|req: 26/233] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:30 2017] GET /deploy_status/532 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 51/234] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:30 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 52/235] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:30 2017] GET /deploy_status/530 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 145/236] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:30 2017] GET /deploy_status/527 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88064|app: 0|req: 53/237] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:30 2017] GET /deploy_status/526 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 146/238] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:30 2017] GET /deploy_status/526 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 147/239] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:30 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 148/240] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:30 2017] GET /deploy_status/533 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 54/241] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 149/242] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (4 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 150/243] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/525 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88063|app: 0|req: 27/244] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/529 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88062|app: 0|req: 14/245] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/526 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88064|app: 0|req: 55/246] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/528 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88064|app: 0|req: 56/247] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/527 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88064|app: 0|req: 57/248] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 151/249] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:31 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 152/250] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 153/251] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88063|app: 0|req: 28/252] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88063|app: 0|req: 29/253] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/528 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 58/254] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/533 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88064|app: 0|req: 59/255] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/529 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 60/256] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/530 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 154/257] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 155/258] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/526 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 156/259] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88064|app: 0|req: 61/260] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:32 2017] GET /deploy_status/525 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 62/261] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:33 2017] GET /deploy_status/531 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 157/262] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:33 2017] GET /deploy_status/527 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88063|app: 0|req: 30/263] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:33 2017] GET /deploy_status/532 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 158/264] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:33 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 159/265] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:33 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 160/266] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:33 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88064|app: 0|req: 63/267] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/529 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88064|app: 0|req: 64/268] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/529 => generated 12888 bytes in 17 msecs (HTTP/1.1 404) 2 headers in 80 bytes (4 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 161/269] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/532 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 162/270] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/525 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 163/271] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88063|app: 0|req: 31/272] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 164/273] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/527 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 165/274] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 166/275] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 167/276] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/527 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 65/277] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 168/278] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/530 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 169/279] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:34 2017] GET /deploy_status/525 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 66/280] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 170/281] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/528 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 171/282] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/529 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88064|app: 0|req: 67/283] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/527 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 172/284] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/526 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (4 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 173/285] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 174/286] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/528 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88063|app: 0|req: 32/287] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/526 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88062|app: 0|req: 15/288] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/529 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 175/289] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/526 => generated 12888 bytes in 18 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 176/290] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:35 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88063|app: 0|req: 33/291] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/528 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88064|app: 0|req: 68/292] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/529 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88062|app: 0|req: 16/293] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88061|app: 0|req: 1/294] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/533 => generated 12888 bytes in 192 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 177/295] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/530 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 178/296] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 179/297] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/532 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 180/298] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/526 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 181/299] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/528 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 182/300] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/528 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88063|app: 0|req: 34/301] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/527 => generated 12888 bytes in 18 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 183/302] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/530 => generated 12888 bytes in 19 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 184/303] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/532 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88063|app: 0|req: 35/304] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:36 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 185/305] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:37 2017] GET /deploy_status/525 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 69/306] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:37 2017] GET /deploy_status/533 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (4 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 186/307] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:37 2017] GET /deploy_status/525 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88064|app: 0|req: 70/308] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:37 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88063|app: 0|req: 36/309] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/527 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 187/310] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/525 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 188/311] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/529 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 71/312] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/533 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88064|app: 0|req: 72/313] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 73/314] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/531 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 189/315] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/530 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 190/316] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/531 => generated 12888 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88064|app: 0|req: 74/317] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/527 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88064|app: 0|req: 75/318] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:38 2017] GET /deploy_status/528 => generated 12888 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88063|app: 0|req: 37/319] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:39 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 191/320] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:39 2017] GET /deploy_status/530 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88064|app: 0|req: 76/321] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:39 2017] GET /deploy_status/525 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88065|app: 0|req: 192/322] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:39 2017] GET /deploy_status/531 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 193/323] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:39 2017] GET /deploy_status/528 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 194/324] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:39 2017] GET /deploy_status/527 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 195/325] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:39 2017] GET /deploy_status/526 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 196/326] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:39 2017] GET /deploy_status/527 => generated 12888 bytes in 17 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88063|app: 0|req: 38/327] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/533 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88064|app: 0|req: 77/328] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88065|app: 0|req: 197/329] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/532 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 198/330] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/526 => generated 12888 bytes in 33 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/531
+[pid: 88064|app: 0|req: 78/331] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/531 => generated 12888 bytes in 21 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88063|app: 0|req: 39/332] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/529 => generated 12888 bytes in 30 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/527
+[pid: 88065|app: 0|req: 199/333] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/527 => generated 12888 bytes in 16 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/525
+[pid: 88065|app: 0|req: 200/334] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/525 => generated 12888 bytes in 15 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88064|app: 0|req: 79/335] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:40 2017] GET /deploy_status/526 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/533
+[pid: 88065|app: 0|req: 201/336] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:41 2017] GET /deploy_status/533 => generated 12888 bytes in 19 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/532
+[pid: 88064|app: 0|req: 80/337] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:41 2017] GET /deploy_status/532 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/530
+[pid: 88065|app: 0|req: 202/338] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:41 2017] GET /deploy_status/530 => generated 12888 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/529
+[pid: 88065|app: 0|req: 203/339] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:41 2017] GET /deploy_status/529 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (3 switches on core 0)
+Not Found: /deploy_status/528
+[pid: 88065|app: 0|req: 204/340] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:41 2017] GET /deploy_status/528 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /deploy_status/526
+[pid: 88065|app: 0|req: 205/341] 127.0.0.1 () {50 vars in 971 bytes} [Wed Mar 29 11:43:41 2017] GET /deploy_status/526 => generated 12888 bytes in 14 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+[pid: 88065|app: 0|req: 206/342] 127.0.0.1 () {42 vars in 899 bytes} [Wed Mar 29 11:43:41 2017] GET /homework/confirm_deploy => generated 45195 bytes in 114 msecs (HTTP/1.1 200) 4 headers in 233 bytes (5 switches on core 0)

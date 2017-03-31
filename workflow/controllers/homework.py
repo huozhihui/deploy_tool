@@ -3,19 +3,36 @@
 from workflow.forms import HomeWorkForm, ParameterForm
 from workflow.models import *
 from workflow.controllers import *
+from client.models import Host_Role
 
 
 # 检查hid是否存在的适配器
-def check_hid(func):
+def check_session(key, url):
+    def decorator(func):
+        functools.wraps(func)
+
+        def wrapper(*args, **kwargs):
+            hid = args[0].session.get(key, None)
+            if hid:
+                return func(*args, **kwargs)
+            else:
+                return HttpResponseRedirect(url)
+
+        return wrapper
+
+    return decorator
+
+
+def check_task_over(func):
     functools.wraps(func)
-
     def wrapper(*args, **kwargs):
-        hid = args[0].session.get('hid', None)
-        if hid:
-            return func(*args, **kwargs)
+        tid = args[0].session.get('tid', None)
+        task = Task.objects.get(pk=tid)
+        if task.status == 1:
+            args[0].session['msg'] = u"您还有未完成的部署任务(%s),请首先完成。" % task.uuid
+            return HttpResponseRedirect("/homework/confirm_deploy")
         else:
-            return HttpResponseRedirect('/homework')
-
+            return func(*args, **kwargs)
     return wrapper
 
 
@@ -99,21 +116,20 @@ def select_deploy(request, id):
 
         if (task and task.homework_id == id):
             request.session['msg'] = u"您还有未完成的部署任务(%s),请首先完成。" % task.uuid
-            return HttpResponseRedirect("/task")
+            return HttpResponseRedirect("/homework/confirm_deploy")
+            # return HttpResponseRedirect("/task")
         else:
             _create_task(request, id, tid)
-            # return HttpResponseRedirect("/homework/select_node")
             return HttpResponseRedirect("/homework/select_role")
-
     else:
         _create_task(request, id, tid)
-        # return HttpResponseRedirect("/homework/select_node")
         return HttpResponseRedirect("/homework/select_role")
 
 
 # *************************************** 选择角色 ********************************************
 # 选择角色
-@check_hid
+@check_session('hid', '/homework')
+@check_session('tid', '/homework')
 def select_role(request):
     request.session['tab_active'] = 1
     hid = request.session.get('hid', None)
@@ -124,12 +140,15 @@ def select_role(request):
     select_roles = [t.role_manage_id for t in task_logs]
 
     form_url = "/%s/confirm_role" % _class_name()
-    object_list = ext_helper.get_objects(request, 'RoleManage')
+    object_list = ext_helper.get_objects(request, 'RoleManage').order_by('num')
     render_url = "%s/%s" % (_class_name(), 'select_role.html')
     return render(request, render_url, locals())
 
 
 # 确认角色
+@check_session('hid', '/homework')
+@check_session('tid', '/homework')
+@check_task_over
 def confirm_role(request):
     roles = map(int, request.POST.getlist('role'))
     hid = request.session.get('hid', None)
@@ -153,18 +172,54 @@ def confirm_role(request):
                 TaskLog.objects.get_or_create(task_id=tid,
                                               host_id=host_id,
                                               role_manage_id=role_id,
+                                              num=role_manage.num,
                                               user_id=user_id,
                                               status=0,
                                               timeout=role_manage.timeout
                                               )
-                host_ip = Host.objects.get(pk=host_id).ip
-                if role_manage.dynamic_vars:
-                    dynamic_var_list = role_manage.dynamic_vars.split(',')
-                    for var in dynamic_var_list:
-                        d = {'homework_id': hid, 'role_manage_id': role_id, 'name': var, 'value': host_ip,
-                             'user_id': user_id, 'is_dynamic_var': True}
-                        Parameter.objects.get_or_create(**d)
 
+    # 将动态变量加入到参数表中
+    role_dynamic_variables = Role_Dynamic_Variable.objects.filter(user_id=request.user.id)
+    for rdv in role_dynamic_variables:
+        key = rdv.dynamic_var.name
+        value = ','.join(rdv.role_manage.host_ips())
+        d = {'homework_id': hid, 'role_manage_id': rdv.role_manage.id, 'name': key, 'value': value,
+             'user_id': user_id, 'is_dynamic_var': True}
+        Parameter.objects.get_or_create(**d)
+
+    # 将特殊参数加入到参数表中
+    special_var = dict()
+    try:
+        role_manage = RoleManage.objects.get(name='kubernetes_cluster_master')
+        host = role_manage.host_role_set.first().host
+        master_ip = host.ip
+        special_var['MASTER'] = "root@{master_ip}".format(master_ip=master_ip)
+    except Exception, e:
+        request.session['msg'] = "添加MASTER参数错误,请手动添加。"
+        print e
+
+    try:
+        role_manage = RoleManage.objects.get(name='kubernetes_cluster_before')
+        host_roles = Host_Role.objects.filter(role_manage_id=role_manage.id)
+        node_ips = [host_role.host.ip for host_role in host_roles]
+        node_ips.remove(master_ip)
+        root_node_ips = map((lambda x: 'root@' + x), node_ips)
+        num_nodes = len(root_node_ips)
+        roles = ['ai']
+        for r in range(1, num_nodes):
+            roles.append('i')
+        special_var['NODES'] = ' '.join(root_node_ips)
+        roles.append('i')
+        special_var['ROLES'] = ' '.join(roles)
+        special_var['NUM_NODES'] = num_nodes + 1
+    except Exception, e:
+        request.session['msg'] = "添加NODES、ROLES和NUM_NODES参数错误,请手动添加。"
+        print e
+
+    for key, value in special_var.items():
+        d = {'homework_id': hid, 'role_manage_id': role_manage.id, 'name': key, 'value': value,
+             'user_id': user_id, 'is_dynamic_var': True}
+        Parameter.objects.get_or_create(**d)
     return config_params(request)
 
 
@@ -205,7 +260,8 @@ def confirm_node(request):
 
 # *************************************** 参数 ********************************************
 # 配置参数
-@check_hid
+@check_session('hid', '/homework')
+@check_session('tid', '/homework')
 def config_params(request):
     class_name = _class_name()
     msg = ext_helper.get_msg(request)
@@ -224,6 +280,7 @@ def config_params(request):
 
 
 # 添加参数
+# @check_task_over
 def create_params(request):
     if request.method == 'POST':  # 当提交表单时
         d = {'homework_id': request.session['hid'], 'role_manage_id': request.POST['role_id']}
@@ -233,6 +290,9 @@ def create_params(request):
 
 
 # 编辑并提交参数
+@check_session('hid', '/homework')
+@check_session('tid', '/homework')
+# @check_task_over  加上则在弹出窗口内显示确认页面
 def update_params(request, id):
     dialog_title = "编辑参数"
     id = ext_helper.to_int(id)
@@ -265,7 +325,8 @@ def delete_task_log(request, id):
 
 
 # 确认部署
-@check_hid
+@check_session('hid', '/homework')
+@check_session('tid', '/homework')
 def confirm_deploy(request):
     class_name = _class_name()
     msg = ext_helper.get_msg(request)
@@ -276,7 +337,7 @@ def confirm_deploy(request):
     homework = HomeWork.objects.get(id=hid)
     task = Task.objects.get(id=tid)
     parameters = homework.parameter_set.filter(Q(user_id=request.user.id) | Q(user__is_superuser=1))
-    task_logs = task.tasklog_set.all()
+    task_logs = task.tasklog_set.filter(Q(status=0) or Q(status=1)).order_by('num')
     # nodes = _get_nodes(tid)
 
     render_url = "%s/%s" % (_class_name(), 'confirm_deploy.html')
@@ -284,7 +345,8 @@ def confirm_deploy(request):
 
 
 # 部署进度
-@check_hid
+@check_session('hid', '/homework')
+@check_session('tid', '/homework')
 def deploy_status(request):
     hid = request.session['hid']
     tid = request.session['tid']
@@ -308,6 +370,7 @@ def deploy_status(request):
 
             # yaml_path = os.path.join(settings.ANSIBLE_ROLES, playbook_name, 'tasks', 'main.yaml')
             yaml_path = os.path.join(settings.ANSIBLE_YAMLS, playbook)
+            # role_yaml_path = os.path.join(settings.ANSIBLE_YAMLS, 'roles', role_manage.playbook_name, 'tasks/main.yml')
             if not os.path.exists(yaml_path):
                 msg = "{role_name}角色的playbook不存在: {path}。".format(
                     role_name=role_manage.name, path=yaml_path
@@ -315,13 +378,20 @@ def deploy_status(request):
                 print "%s文件不存在。" % str(yaml_path)
                 return render(request, render_error_url, locals())
 
+                # if not os.path.exists(role_yaml_path):
+                #     msg = "{role_name}角色的roles不存在: {path}。".format(
+                #         role_name=role_manage.name, path=role_yaml_path
+                #     )
+                #     print "%s文件不存在。" % str(role_yaml_path)
+                #     return render(request, render_error_url, locals())
+
     if not task_logs:
         msg = "选择的角色至少关联一个节点后再部署。"
         return render(request, render_error_url, locals())
 
     # 生成ansible hosts文件
-    hosts_path = os.path.join(settings.ANSIBLE, 'hosts')
-    bk_path = os.path.join(settings.ANSIBLE, 'bk_hosts')
+    hosts_path = os.path.join(settings.ANSIBLE_HOSTS, 'hosts')
+    bk_path = os.path.join(settings.ANSIBLE_HOSTS, 'bk_hosts')
     try:
         _generate_ansible_hosts(hosts_path, bk_path, task_logs)
     except Exception, e:
@@ -341,15 +411,16 @@ def deploy_status(request):
     Task.objects.filter(id=tid).update(**update_task)
 
     request.session['tab_active'] = 4
-    deploy_list = task.tasklog_set.filter(Q(status=0) | Q(status=1))
-    result_list = task.tasklog_set.filter(status__gte=2)
+    deploy_list = task.tasklog_set.filter(~Q(status=2)).order_by('num')
+    result_list = task.tasklog_set.filter(status=2).order_by('num')
     render_url = "%s/%s" % (_class_name(), 'deploy_status.html')
     return render(request, render_url, locals())
-
 
 def deploy_log(request, id):
     id = ext_helper.to_int(id)
     task_log = TaskLog.objects.get(id=id)
+    contents = task_log.content.split(',')
+    task_results = task_log.task_result_set.all()
     dialog_title = '日志'
     render_url = "%s/%s" % (_class_name(), 'dialog_deploy_log.html')
     return render(request, render_url, locals())
@@ -390,7 +461,7 @@ def _generate_ansible_hosts(file_path, bk_path, task_logs):
         d['username'] = node.username
         d['password'] = node.password
         d['port'] = node.port
-        group_name = task_log.role_manage.playbook_name()
+        group_name = task_log.role_manage.playbook_name
         data[group_name].append(d)
 
     if os.path.exists(file_path):

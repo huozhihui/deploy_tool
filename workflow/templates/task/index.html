@@ -7,7 +7,7 @@
             <thead>
             <tr>
                 <th>任务号</th>
-                <th>应用名称</th>
+                <th>作业名称</th>
                 <th>用户</th>
                 <th>状态</th>
                 <th>操作</th>
@@ -23,9 +23,13 @@
                         {{ obj.status_name }}
                     </td>
                     <td class="center">
-                        {% ifequal tid obj.id %}
+                        {% if obj.status == 0 %}
+                            <a href="{% url 'task_continue_deploy' obj.id %}" class="btn btn-default">开始部署</a>
+                        {% elif obj.status == 1 %}
                             <a href="{% url 'task_continue_deploy' obj.id %}" class="btn btn-default">继续部署</a>
-                        {% endifequal %}
+                        {% else %}
+                            <a href="{% url 'task_log_select' obj.id %}" target="_blank" class="btn btn-default">详细</a>
+                        {% endif %}
                         <a href="/{{ class_name }}/delete/{{ obj.id }}" data-del="true" class="btn btn-default">删除</a>
                     </td>
                 </tr>

@@ -13,7 +13,7 @@ class HomeWorkForm(ModelForm):
         widgets = {'describe': Textarea(attrs={'cols': 40, 'rows': 10})}
 
 class ParameterForm(ModelForm):
-    name = forms.CharField(label=u'参数名称', max_length=20)
+    name = forms.CharField(label=u'参数名称', max_length=30)
     # role_names = forms.ChoiceField(label=u'角色')
 
     class Meta:

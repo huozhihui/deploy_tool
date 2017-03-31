@@ -89,3 +89,62 @@
         # if code != 0:
         #     print '执行Ansible PlayBook脚本失败!'
 
+# @ext_helper.thread_method
+# def _get_deploy_result(task, task_log, data):
+#     playbook_name = task_log.role_manage.playbook_name()
+#     content = "正在获取{playbook_name} playbook运行结果......".format(playbook_name=playbook_name)
+#     if task_log.timeout == 0:
+#         if task_log.timeout == 0:
+#             data.update({'status': 3, 'status_name': u"部署失败"})
+#             content = '{playbook_name} playbook运行超时!'.format(playbook_name=playbook_name)
+#             print '主机{host_ip}部署{content}'.format(host_ip=task_log.host.ip, content=content)
+#     # else:
+#     #     data.update({'status': 3, 'status_name': u"部署失败"})
+#     #     content = '运行{playbook_name} playbook时开始时间为空,不能判断运行是否超时!'.format(playbook_name=playbook_name)
+#     #     print '主机{host_ip}{content}'.format(host_ip=task_log.host.ip, content=content)
+#
+#     key = '{tid}-{ip}'.format(tid=task.id, ip=task_log.host.ip)
+#     rs_date = redis_api.Rs.hgetall(key)
+#     ansible_status = rs_date.get('status', None)
+#     if ansible_status:
+#         if ansible_status in ['ok', 'changed']:
+#             data.update({'status': 2, 'status_name': u"部署成功"})
+#             # date_status = 2
+#             # date_status_name = '部署成功'
+#             content = rs_date.get('stdout', None)
+#         else:
+#             data.update({'status': 3, 'status_name': u"部署失败"})
+#             # date_status = 3
+#             # date_status_name = '部署失败'
+#             content = rs_date.get('stderr', None)
+#
+#         # 清除redis缓存
+#         redis_api.Rs.delete(key)
+#     TaskLog.objects.filter(id=task_log.id).update(status=data['status'],
+#                                                   ansible_status=ansible_status,
+#                                                   content=content)
+
+
+# # 调用playbook_api 接口
+# @ext_helper.thread_method
+# def _playbook_api(tid, host, params, playbook):
+#     # 生成hosts文件
+#     tmp_host_dir = '/tmp/ansible_host_files'
+#     file_path = os.path.join(tmp_host_dir, str(host.ip).replace('.', '_'))
+#     if not os.path.exists(tmp_host_dir):
+#         os.mkdir(tmp_host_dir)
+#     playbook_name = playbook.split('.')[0]
+#     with open(file_path, 'w') as f:
+#         f.write('[%s]' % playbook_name)
+#         f.write('\n')
+#         content = "{ip} ansible_ssh_user={user} ansible_ssh_pass={password} ansible_ssh_port={port}".format(
+#             ip=host.ip, user=host.username, password=host.password, port=host.port)
+#         f.write(content)
+#         f.write('\n')
+#
+#     # 将params插入到额外变量
+#     extra_vars = params
+#     yaml_path = os.path.join(settings.ANSIBLE_YAMLS, playbook)
+#     yaml_list = [str(yaml_path)]
+#     code = ansible_playbook_api.api(tid, file_path, yaml_list, extra_vars)
+#     # os.remove(file_path)

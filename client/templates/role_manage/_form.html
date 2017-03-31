@@ -2,14 +2,14 @@
     {% include 'includes/form_field.html' %}
     <div class="form-group">
         <label for="id_dynamic_vars">动态变量:</label>
-        <table>
+        <table style="width: 100%;">
             <tr>
                 {% for var in dynamic_vars %}
                     <td>
-                        <label title="{{ var.name }}" style="width: 150px" for="id_dynamic_var_{{ forloop.counter }}">
+                        <label title="{{ var.name }}" for="id_dynamic_var_{{ forloop.counter }}">
                             <input id="id_dynamic_var_{{ forloop.counter }}" name="dynamic_vars" type="checkbox"
-                                   value="{{ var.name }}">
-                            {{ var.name|truncatechars:15 }}
+                                   value="{{ var.id }}">
+                            {{ var.name|truncatechars:40 }}
                         </label>&nbsp;&nbsp;
                     </td>
                     {% ifnotequal forloop.counter|divisibleby:'4'  0 %}
@@ -22,19 +22,19 @@
     <div class="form-group">
         <span class="red">*</span>
         <label for="id_playbook">应用:</label>
-        &nbsp;
-        <table>
+        &nbsp; <label for="playbook" class="error"></label>
+        <table style="width: 100%;">
             <tr>
                 {% for app in playbook_list %}
                     <td>
-                        <label title="{{ app }}" style="width: 300px" for="id_playbook_{{ forloop.counter }}"> &nbsp;&nbsp;
+                        <label title="{{ app }}" for="id_playbook_{{ forloop.counter }}"> &nbsp;&nbsp;
                             <input id="id_playbook_{{ forloop.counter }}" name="playbook" type="radio"
                                    value="{{ app }}" {% ifequal role_manage.playbook app %}checked{% endifequal %}
                                    required>
-                            {{ app|truncatechars:30 }}
+                            {{ app|truncatechars:40 }}
                         </label>
                     </td>
-                    {% ifnotequal forloop.counter|divisibleby:'2'  0 %}
+                    {% ifnotequal forloop.counter|divisibleby:'3'  0 %}
                         </tr>
                         <tr>
                     {% endifnotequal %}

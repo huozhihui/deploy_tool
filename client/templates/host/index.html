@@ -21,7 +21,9 @@
                 <tr class="{% cycle 'odd' 'even' %} gradeX">
                     <!--<td>{{ forloop.counter }}</td>-->
                     <td>{{ obj.ip }}</td>
-                    <td>{{ obj.role_names }}</td>
+                    <td title="{{ obj.role_names }}">
+                        {{ obj.role_names|truncatechars:50 }}
+                    </td>
                     <td>{{ obj.port }}</td>
                     <td>{{ obj.status }}</td>
                     <td title="{{ obj.describe }}">

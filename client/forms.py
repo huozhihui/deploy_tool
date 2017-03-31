@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from models import *
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm, Textarea, TextInput
 from django.utils.translation import ugettext_lazy as _, ungettext_lazy
+
+# from django.core.validators import RegexValidator
 
 # class HostForm(forms.Form):
 #     username = forms.CharField(label='用户名', max_length=30)
@@ -13,20 +15,26 @@ from django.utils.translation import ugettext_lazy as _, ungettext_lazy
 #     describe = forms.CharField(label='描述', max_length=255)
 default_errors = {
     'required': _('This field is required'),
-    'invalid': _('Enter a valid value')
+    'invalid': _('Enter a valid value'),
 }
+
 
 class DynamicVarForm(ModelForm):
     class Meta:
         model = DynamicVar
         fields = ['name', 'describe']
 
+    # def __init__(self, *args, **kwargs):
+    #     super(DynamicVarForm, self).__init__(*args, **kwargs)
+    #     self.fields['name'].widget.attrs.update({'class': 'required form-control'})
+
+
 class RoleManageForm(ModelForm):
     class Meta:
         model = RoleManage
-        fields = ['name', 'timeout']
-    # name = forms.CharField(label=u'名称', max_length=30, error_messages=default_errors)
-    # timeout = forms.IntegerField(label=u'运行时长', error_messages=default_errors)
+        fields = ['name', 'num', 'timeout']
+        # name = forms.CharField(label=u'名称', max_length=30, error_messages=default_errors)
+        # timeout = forms.IntegerField(label=u'运行时长', error_messages=default_errors)
 
 
 class HostGroupForm(ModelForm):

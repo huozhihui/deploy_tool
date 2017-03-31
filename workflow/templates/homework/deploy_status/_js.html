@@ -1,43 +1,62 @@
 <script>
-    var frequency = 3000
-    rest_time_int = setInterval(update_rest_time, 1000);
-    my_int = setInterval(ws_ready, frequency);
+    var frequency = 1000
+    my_int = setInterval(run, frequency);
+{#        run()#}
     $(function () {
         if (window.WebSocket == undefined) {
             alert('浏览器不支持Web Socket');
             return false
         }
     })
+
+    function run() {
+        update_rest_time();
+        setTimeout(ws_ready, 2000);
+    }
+
+
     // 调用ws
     function ws_ready() {
-        // 获取表格中数据ID
-        var host_list = [];
-        var ids = [];
-        var d_tr = $('#t_deploy tr').not(':first');
-        if (d_tr.length == 0) {
+        retry_tr = new Array();
+        var first_tr = $('#t_deploy tbody').children('tr:first');
+        if(first_tr.length==0){
+            ajax_set_task_complete();
+            clearInterval(my_int)
+            return;
+        }
+        role_td = first_tr.children('td:nth-child(3)');
+        status_name_td = first_tr.children('td:nth-child(4)')
+        role = role_td.text();
+        status_name = status_name_td.text();
+        d_trs = $('#t_deploy tr[role=' + role + ']');
+        if (d_trs.length > 0) {
+            d_trs.each(function () {
+                if ($(this).hasClass('red')) {
+                    retry_tr.push($(this))
+                } else {
+                    console.log('create ws')
+                    // 要发送的数据
+                    task_log_id = $(this).attr('id').split('_')[1];
+                    var data = {
+                        "task_log_id": task_log_id,
+                        "tid": {{ tid }}
+                    }
+                    // Connect to Web Socket
+                    ws = new WebSocket("ws://{{ base_url }}" + '/deploy_status/' + task_log_id);
+                    conn_websocket(ws, data)
+                }
+            })
+            // 当重试的行数等于当前部署的角色的行数时候,则停止部署。
+            if (retry_tr.length == d_trs.length) {
+                clearInterval(my_int)
+            }
+        } else {
+            // 当要部署的行为空时,结束部署定时器,并设置任务部署结束
             ajax_set_task_complete()
             clearInterval(my_int)
         }
-        d_tr.each(function () {
-            td = $(this).children('td:nth-child(2)');
-            ip = td.text()
-            task_log_id = $(this).attr('id').split('_')[1];
-            if (!host_list.includes(ip)) {
-                host_list.push(ip);
-                // 要发送的数据
-                var data = {
-                    "task_log_id": task_log_id,
-                    "tid": {{ tid }}
-                }
-
-                // Connect to Web Socket
-                ws = new WebSocket("ws://{{ base_url }}" + '/deploy_status/' + task_log_id);
-                {#                conn_websocket('{{ base_url }}', 'deploy_status', data)#}
-                conn_websocket(ws, data)
-
-            }
-        })
     }
+
 
     // ws调用方法
     function ws_invoke(data) {
@@ -46,28 +65,44 @@
         var status = data.status;
         var status_name = data.status_name
         var tr = $('#tr_' + data.id);
-        tr.children('td:nth-last-child(4)').empty();
-        tr.children('td:nth-last-child(4)').text(status_name);
-        if (status > 1) {
-            //状态为部署完成
-            $('#t_result tr:last').after(tr);
-            tr.children('td:nth-last-child(2)').empty();
-            if (status == 2) {
-                tr.addClass('green');
-            } else {
-                tr.addClass('red');
-                old_html = tr.children('td:nth-last-child(1)').html()
-                retry_html = '<a href="#" onclick="retry_deploy(\'' + data.id + '\')">重试</a>'
-                tr.children('td:nth-last-child(1)').html(retry_html + old_html)
-                tr.children('td:nth-last-child(3)').text(data.use_time)
-            }
-        } else if (status == 1) {
-            //状态为正在部署
-            tr.children('td:nth-last-child(2)').html($('<img/>', {
+        var host_ip_td = tr.children('td:nth-child(2)');
+        var role_td = tr.children('td:nth-child(3)');
+        var status_name_td = tr.children('td:nth-child(4)');
+        var use_name_td = tr.children('td:nth-child(5)');
+        var refresh_img_td = tr.children('td:nth-child(6)')
+        var operate_td = tr.children('td:nth-last-child(1)')
+        status_name_td.text(status_name);
+        // 正在部署
+        if (status == 1) {
+            refresh_img_td.html($('<img/>', {
                 src: '/static/bootstrap/images/reload.gif',
                 alt: 'reload',
                 style: 'height: 20px;'
             }));
+        } else if (status == 2) {
+            $('#t_result tr:last').after(tr);
+            // 删除刷新图片
+            refresh_img_td.empty();
+            // 更新耗时
+            use_name_td.text(data.use_time)
+            tr.addClass('green');
+        } else if (status > 2) {
+            tr.addClass('red');
+            a_text = operate_td.children('a:nth-child(2)').text();
+            if (a_text != '重试') {
+                old_html = operate_td.html()
+                retry_html = '<a href="#" onclick="retry_deploy(\'' + data.id + '\')">重试</a>&nbsp;';
+                delete_html = '<a href="#" onclick="delete_date(\'/homework/delete_task_log/' + data.id + '\', this)">删除</a>';
+                operate_td.html(old_html + retry_html + delete_html)
+            }
+            // 删除刷新图片
+            refresh_img_td.empty();
+            {#            use_name_td.text(data.use_time)#}
+            host_ip = host_ip_td.text();
+            role = role_td.text();
+            error_msg = host_ip + "部署" + role + "失败, 请重试成功后继续完成部署。"
+            $('div[role=alert]').removeClass('hidden');
+            $('div[role=alert]').children('strong').text(error_msg);
         }
     }
 
@@ -91,20 +126,17 @@
                 msg = response.msg
                 if (msg == 'success') {
                     var tr = $('#tr_' + id);
-                    $('#t_deploy tr:last').after(tr);
                     // 删除部署成功、失败样式
                     tr.removeClass('red').removeClass('green');
                     // 更新状态名称
                     tr.children('td:nth-last-child(4)').text(response.status_name);
-                    // 删除耗时
-                    tr.children('td:nth-last-child(3)').text('')
                     // 删除重试链接
-                    tr.children('td:nth-last-child(1)').children('a:nth-child(1)').remove()
-                    if ($('#t_deploy tr:last').length == 1) {
-                        rest_time_int = setInterval(update_rest_time, 1000);
-                        my_int = setInterval(ws_ready, frequency);
-                    }
-
+                    tr.children('td:nth-last-child(1)').children('a:nth-child(2)').remove();
+                    tr.children('td:nth-last-child(1)').children('a:nth-child(2)').remove();
+                    // 错误提示信息隐藏
+                    $('div[role=alert]').addClass('hidden');
+                    $('div[role=alert]').children('strong').text('');
+                    my_int = setInterval(run, frequency);
                 } else {
                     $('div[role=alert]').removeClass('hidden');
                     $('div[role=alert]').children('strong').text('重试失败, ' + msg);
@@ -115,25 +147,22 @@
 
     // 动态更新剩余时间
     function update_rest_time() {
-        console.log('update rest time')
-        var d_tr = $('#t_deploy tr').not(':first');
-        if (d_tr.length == 0) {
-            clearInterval(rest_time_int)
-        } else {
-            d_tr.each(function () {
+        console.log('update rest time');
+        var d_tr = $('#t_deploy tbody').children();
+        d_tr.each(function () {
+            var refresh_img_td = $(this).children('td:nth-child(6)');
+            var real_time = $(this).children('td:nth-last-child(3)');
+            if (refresh_img_td.html() != '') {
                 task_log_id = $(this).attr('id').split('_')[1];
                 $.ajax({
                     url: "/task_log/update_rest_time/" + task_log_id,
                     method: "get",
                     success: function (response) {
-                        d_tr.children('td:nth-last-child(3)').text(response.msg)
-                        if (response.msg == '00:00:00') {
-                            clearInterval(rest_time_int)
-                        }
+                        real_time.text(response.msg)
                     }
                 })
-            })
-        }
+            }
+        });
     }
 
     // 将准备部署或正在部署的任务ids传入后台,获取相应的返回信息

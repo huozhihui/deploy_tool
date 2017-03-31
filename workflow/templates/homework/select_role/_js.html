@@ -1,4 +1,12 @@
 <script>
+    $(function () {
+        if ($('input[id^=client_node_]:checked').length == 0) {
+            $('input:checkbox').prop('checked', 'checked');
+        }
+
+        // 全选及全取消
+        check_all();
+    })
     // 提交表单
     function submit_form() {
         if ($('input[id^=client_node_]:checked').length > 0) {

@@ -62,7 +62,7 @@ def edit(request, id):
     else:
         host = Host.objects.get(pk=id)
         select_role_list = host.host_role_set.all().values_list('role_manage_id', flat=True)
-        select_roles = list(select_role_list)
+        select_role =  '_'.join(map(str, list(select_role_list)))
         form = HostForm(instance=host)
         return render(request, 'host/form.html', locals())
 
@@ -76,6 +76,17 @@ def delete(request, id):
     else:
         request.session['msg'] = "数据删除成功!"
     return index(request)
+
+
+def ajax_valid_ip(request):
+    ip = request.GET['ip']
+    try:
+        Host.objects.get(ip=ip)
+        msg = "{ip}已存在。".format(ip=ip)
+    except:
+        msg = ''
+    return HttpResponse(json.dumps({'msg': msg}), content_type='application/json')
+
 
 def _title_name():
     return '节点'

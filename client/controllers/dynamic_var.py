@@ -18,7 +18,16 @@ def new(request):
     class_name = _class_name()
     operation = "添加"
     if request.method == 'POST':  # 当提交表单时
-        instance, msg= ext_helper.create_date(request, 'DynamicVar', 'name')
+        print request.POST
+        obj = get_object_or_404(DynamicVar, name=request.POST['name'])
+        print "aaa"
+        print obj
+        form = DynamicVarForm(request.POST, instance=obj)
+        print form.is_valid()
+        print form.save()
+        # if form.is_valid():
+
+    #     instance, msg= ext_helper.create_date(request, 'DynamicVar', 'name')
     form = DynamicVarForm()
     return render(request, 'dynamic_var/form.html', locals())
 
@@ -50,6 +59,17 @@ def delete(request, id):
     else:
         request.session['msg'] = "数据删除成功!"
     return index(request)
+
+# 校验名称唯一性
+def ajax_valid_name(request):
+    name = request.GET['name']
+    try:
+        role_manage = DynamicVar.objects.get(name=name)
+        msg = "{name}已存在。".format(name=name)
+    except:
+        msg = ''
+    return HttpResponse(json.dumps({'msg': msg}), content_type='application/json')
+
 
 def _title_name():
     return '变量'

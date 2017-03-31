@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-10 09:36+0800\n"
+"POT-Creation-Date: 2017-03-16 11:16+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "输入一个有效的值"
 msgid "Enter a valid IPv4 or IPv6 address"
 msgstr "输入一个有效的IPv4和IPv6地址"
 
-#: client/models.py:51
+#: client/models.py:60
 msgid "password"
 msgstr "密码"
 
@@ -46,24 +46,24 @@ msgid "dynamic_var"
 msgstr "动态变量"
 
 #: templates/includes/menu.html:25
-msgid "role"
-msgstr "角色"
+msgid "role_manage"
+msgstr "角色管理"
 
 #: templates/includes/menu.html:28
-msgid "node"
-msgstr "节点"
+msgid "node_manage"
+msgstr "节点管理"
 
 #: templates/includes/menu.html:31
-msgid "homework"
-msgstr "作业"
+msgid "homework_manage"
+msgstr "作业管理"
 
 #: templates/includes/menu.html:34
-msgid "task"
-msgstr "任务"
+msgid "deploy_record"
+msgstr "部署记录"
 
 #: templates/includes/menu.html:37
-msgid "task_log"
-msgstr "日志"
+msgid "deploy_record_detail"
+msgstr "部署明细"
 
 #: templates/includes/menu.html:43
 msgid "base_operations"
@@ -137,11 +137,17 @@ msgstr "主机组"
 msgid "site"
 msgstr "网站"
 
-#~ msgid "role_manage"
-#~ msgstr "角色管理"
+#~ msgid "role"
+#~ msgstr "角色"
 
-#~ msgid "node_manage"
-#~ msgstr "节点管理"
+#~ msgid "node"
+#~ msgstr "节点"
+
+#~ msgid "task"
+#~ msgstr "任务"
+
+#~ msgid "task_log"
+#~ msgstr "日志"
 
 #~ msgid "variable"
 #~ msgstr "变量"

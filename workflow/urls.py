@@ -39,7 +39,9 @@ urlpatterns = [
     url(r'^task/continue_deploy/(\d{1,8})$', login_required(task.continue_deploy), name='task_continue_deploy'),
     url(r'^task/set_task_complete$', login_required(task.set_task_complete), name='task_set_task_complete'),
 
-    # url(r'^tlog$', login_required(task_log.index), name='task_log_index'),
+    url(r'^tlog$', login_required(task_log.index), name='task_log_index'),
+    url(r'^task_log/select/(\d{1,8})$', login_required(task_log.select), name='task_log_select'),
+    url(r'^task_log/delete/(\d{1,8})$', login_required(task_log.delete), name='task_log_delete'),
     url(r'^task_log/retry_deploy/(\d{1,8})$', login_required(task_log.retry_deploy), name='task_log_retry_deploy'),
     url(r'^task_log/update_rest_time/(\d{1,8})$', login_required(task_log.update_rest_time), name='task_log_update_rest_time'),
 

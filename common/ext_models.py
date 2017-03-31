@@ -18,7 +18,7 @@ class Base(models.Model):
 
 # 基类
 class CommonName(models.Model):
-    name = models.CharField("名称", max_length=20)
+    name = models.CharField("名称", max_length=30)
     def __unicode__(self):
         return self.name
     class Meta:

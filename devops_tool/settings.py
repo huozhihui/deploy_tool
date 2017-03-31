@@ -39,9 +39,12 @@ UPLOAD_FILE = (
 # ANSIBLE = "/etc/ansible"
 # ANSIBLE_ROLES = os.path.join(ANSIBLE, 'roles')
 # ANSIBLE_YAMLS = os.path.join(ANSIBLE)
-ANSIBLE = "/Users/huozhihui/huo/ansible"
+ANSIBLE = "/Users/huozhihui/huo/paas_deploy"
 ANSIBLE_ROLES = os.path.join(ANSIBLE, 'roles')
 ANSIBLE_YAMLS = ANSIBLE
+ANSIBLE_HOSTS = ANSIBLE
+ANSIBLE_INIT_USER = 'ubunt'
+ANSIBLE_INIT_PASS = 'huo244'
 
 # ===================================
 
@@ -135,7 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'zh_cn'
 
-TIME_ZONE='Asia/Shanghai'
+TIME_ZONE = 'Asia/Shanghai'
 
 # TIME_ZONE = 'UTC'
 
@@ -152,3 +155,77 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'console.log'),
+        },
+        # 'console': {
+        #     'level': 'INFO',
+        #     'class': 'logging.StreamHandler',
+        #     # 'formatter': 'simple'
+        # },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             # 'level': 'INFO',
+#             # 'filename': os.path.join(BASE_DIR, 'console.log'),
+#             # 'maxBytes': 1024 * 1024 * 15,  # 15MB
+#             # 'backupCount': 10,
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+#         },
+#     },
+# }
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'filters': {
+#         'require_debug_false': {
+#             '()': 'django.utils.log.RequireDebugFalse'
+#         }
+#     },
+#     'handlers': {
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'filters': ['require_debug_false'],
+#             'class': 'django.utils.log.AdminEmailHandler'
+#         },
+#         'applogfile': {
+#             'level':'INFO',
+#             'class':'logging.handlers.RotatingFileHandler',
+#             'filename': os.path.join(BASE_DIR, 'APPNAME.log'),
+#             'maxBytes': 1024*1024*15, # 15MB
+#             'backupCount': 10,
+#         },
+#     },
+#     'loggers': {
+#         'django.request': {
+#             'handlers': ['applogfile'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#     }
+# }

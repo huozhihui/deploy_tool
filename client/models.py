@@ -6,23 +6,29 @@ from common.ext_models import Base, CommonName, CommonDescribe
 from django.utils.translation import ugettext_lazy as _
 
 
+
 class DynamicVar(CommonDescribe, CommonName, Base):
+    name = models.CharField("名称", max_length=20, unique= True)
     def __str__(self):
         return self.name
 
     def __unicode__(self):
         return unicode(self.name) or u''
 
-class RoleManage(CommonDescribe, Base):
+class RoleManage(CommonDescribe, CommonName, Base):
     # name = models.CharField("名称", max_length=20, unique= True)
     # name===》Ansible hosts分组用到
     # playbook===》Ansible-playbook脚本用到
     # tag===》标示Ansible-playbook 参数分组
 
-    name = models.CharField("名称", max_length=20)
-    timeout = models.IntegerField(verbose_name="超时时长(s)", default=120)
+    # name = models.CharField("名称", max_length=20)
+    num = models.IntegerField(verbose_name="序号")
+    timeout = models.IntegerField(verbose_name="超时时长(s)", default=180)
     playbook = models.CharField("Playbook", max_length=255, blank=True, null= True)
-    dynamic_vars = models.CharField("动态变量", max_length=255, blank=True, null= True)
+    playbook_name = models.CharField("Playbook名称", max_length=50, blank=True, null= True)
+    # playbook子任务数
+    # step_count = models.IntegerField(default=0)
+    # dynamic_vars = models.CharField("动态变量", max_length=255, blank=True, null= True)
 
     def __str__(self):
         return self.name
@@ -37,8 +43,13 @@ class RoleManage(CommonDescribe, Base):
     def host_count(self):
         return len(self.host_ips())
 
-    def playbook_name(self):
-        return self.playbook.split('.')[0]
+    # def playbook_name(self):
+    #     return self.playbook.split('.')[0]
+
+    # 角色关联的动态参数
+    def dynamic_variable_ids(self):
+        role_dynamic_variables = self.role_dynamic_variable_set.all()
+        return [rdv.dynamic_var.id for rdv in role_dynamic_variables]
 
 class HostGroup(CommonName, Base):
     describe = models.CharField("描述", max_length=255, blank=True, null= True)
@@ -71,6 +82,14 @@ class Host(Base):
 class Host_Role(Base):
     host = models.ForeignKey(Host)
     role_manage = models.ForeignKey(RoleManage)
+
+class Dynamic_Variable_Host(Base):
+    dynamic_var = models.ForeignKey(DynamicVar)
+    host = models.ForeignKey(Host)
+
+class Role_Dynamic_Variable(Base):
+    role_manage = models.ForeignKey(RoleManage)
+    dynamic_var = models.ForeignKey(DynamicVar)
 
 
 

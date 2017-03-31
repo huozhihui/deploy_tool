@@ -1,12 +1,35 @@
 <script>
     $(function () {
+        // 初始化文本框的宽度为50%
+        $('.form-control[id^=id_]').each(function(){
+            $(this).css('width', '50%');
+        })
+
         // 编辑时候,勾选对应复选框
-        var select_role = "{{role_manage.dynamic_vars}}";
+        var select_role = "{{role_manage.dynamic_variable_ids}}";
         $('[id^=id_dynamic_var_]').each(function () {
             val = $(this).val()
             if (select_role.indexOf(val) >= 0) {
                 $(this).attr('checked', 'checked')
             }
+        });
+        // 名称校验
+        $('#id_name').addClass('valid_letter_num');
+        check_uniq('name', '/role_manage/ajax_valid_name', 'submit')
+
+        // 序号
+        $('#id_num').attr('min', 1);
+        $('#id_num').attr('max', 50);
+
+        // 超时时间
+        $('#id_timeout').attr('min', 0);
+        $('#id_timeout').attr('max', 10800);
+
+        // 应用
+        $('[name=playbook]').each(function () {
+            $(this).rules('remove', 'required')
         })
+
     })
+    $("form").validate();
 </script>

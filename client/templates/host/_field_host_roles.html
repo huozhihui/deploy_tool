@@ -1,14 +1,15 @@
 <div class="form-group">
     <span class="red">*</span>
     <label for="id_role">角色:</label>
-    <table>
+    <label for="role_ids" class="error"></label>
+    <table style="width: 100%">
         <tr>
             {% for role in role_manages %}
                 <td>
-                    <label title="{{ role.name }}" style="width: 150px;" for="id_host_roles_{{ forloop.counter }}">
+                    <label title="{{ role.name }}" style="" for="id_host_roles_{{ forloop.counter }}">
                         <input id="id_host_roles_{{ forloop.counter }}" name="role_ids" type="checkbox"
-                               value="{{ role.id }}">
-                        &nbsp;{{ role.name|truncatechars:15 }}
+                               value="{{ role.id }}" required="required">
+                        &nbsp;{{ role.name|truncatechars:40 }}
                     </label>&nbsp;&nbsp;
                 </td>
                 {% ifnotequal forloop.counter|divisibleby:'3'  0 %}

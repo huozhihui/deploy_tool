@@ -1,30 +1,43 @@
 <script>
     $(function () {
+        // 初始化文本框的宽度为50%
+        $('.form-control[id^=id_]').each(function () {
+            $(this).css('width', '50%');
+        })
+
         // 编辑时候,勾选对应复选框
-        console.log('aa')
-        var select_role = "{{select_roles}}";
-        console.log(select_role)
+        var select_role = "{{select_role}}".split('_');
         $('[id^=id_host_roles_]').each(function () {
-            val = $(this).val()
+            val = $(this).val().toString();
             if (select_role.indexOf(val) >= 0) {
                 $(this).attr('checked', 'checked')
             }
         })
 
         // 初始化 绑定表单校验
-        $('form').submit(function () {
-            return check_host_roles();
-        })
+        $('#id_username').addClass('valid_letter_num');
+        $('#id_password').addClass('valid_letter_num');
+
+        // ip校验及唯一
+        $('#id_ip').addClass('ip');
+        check_uniq('ip', '/host/ajax_valid_ip', 'submit')
+
+        // 端口
+        $('#id_port').attr('min', 1);
+        $('#id_port').attr('max', 65535);
+
+        $("form").validate();
+
     })
 
     // 提交表单时候,检查角色复选框
-    function check_host_roles() {
-        host_roles_len = $('input[id^=id_host_roles_]:checked').length;
-        if (host_roles_len == 0) {
-            alert('角色不能为空');
-            return false;
-        } else {
-            return true;
-        }
-    }
+    {#    function check_host_roles() {#}
+    {#        host_roles_len = $('input[id^=id_host_roles_]:checked').length;#}
+    {#        if (host_roles_len == 0) {#}
+    {#            alert('角色不能为空');#}
+    {#            return false;#}
+    {#        } else {#}
+    {#            return true;#}
+    {#        }#}
+    {#    }#}
 </script>

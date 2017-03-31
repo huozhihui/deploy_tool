@@ -38,11 +38,12 @@ def continue_deploy(request, id):
 def set_task_complete(request):
     tid = request.session.get('tid', None)
     Task.objects.filter(id=tid).update(status=2)
+    ext_helper.del_session(request, 'tid')
     return HttpResponse(json.dumps({'msg': 'Update Task status Successfully'}), content_type='application/json')
 
 
 def _title_name():
-    return '任务'
+    return '部署纪录'
 
 
 def _class_name():

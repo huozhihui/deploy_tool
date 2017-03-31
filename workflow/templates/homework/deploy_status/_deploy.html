@@ -14,13 +14,19 @@
             </thead>
             <tbody>
             {% for obj in deploy_list %}
-                <tr id='tr_{{ obj.id }}' class="{% cycle 'odd' 'even' %} gradeX">
+                <tr id='tr_{{ obj.id }}' role="{{ obj.role_manage.name }}"
+                    class="{% cycle 'odd' 'even' %} {{ obj.color }} gradeX">
                     {% include './_td.html' %}
                     <td>{{ obj.rest_time }}</td>
                     <td></td>
                     <td class="center">
                         <a href="#" data-target="#myModal" data-toggle="modal"
                            onclick="show_dialog('{% url 'homework_deploy_log' obj.id %}')" remote="true">详细</a>
+                        {% if obj.status > 2 %}
+                            <a href="#" onclick="retry_deploy('{{ obj.id }}')">重试</a>
+                            <a href="#"
+                               onclick="delete_date('{% url 'homework_delete_task_log' obj.id %}', this)">删除</a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

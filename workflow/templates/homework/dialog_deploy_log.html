@@ -1,25 +1,45 @@
 {% extends 'extends/dialog_body.html' %}
 
 {% block body %}
-    <div class="dialog">
-        <table style="width: 100%">
+    <div class="dialog  scroll">
+        <table style="width: 90%; margin: auto">
             <tbody>
             <tr class="cust_tr">
                 <td>节点IP：</td>
-                <td>{{ task_log.host.ip }}</td>
+                <td colspan="2">{{ task_log.host.ip }}</td>
             </tr>
             <tr class="cust_tr">
                 <td>角色：</td>
-                <td>{{ task_log.role_manage.name }}</td>
+                <td colspan="2">{{ task_log.role_manage.name }}</td>
             </tr>
             <tr class="cust_tr">
-                <td>运行：</td>
-                <td>{{ task_log.status_name }}</td>
+                <td>状态：</td>
+                <td colspan="2">{{ task_log.status_name }}</td>
             </tr>
-            <tr class="cust_tr">
-                <td>详细：</td>
-                <td>{{ task_log.content }}</td>
-            </tr>
+            <!-- 任务日志 -->
+            {% for content in contents %}
+                <tr class="cust_tr">
+                    <td></td>
+                    <td colspan="2">{{ content }}</td>
+                </tr>
+            {% endfor %}
+            <!-- 任务名称 -->
+            {% for task_result in task_results %}
+                <tr class="cust_tr {{ task_result.color }}">
+                    <td  width="10%">{{ forloop.counter }}、</td>
+                    <td  width="50%">{{ task_result.task_name }}</td>
+                    <td>{{ task_result.ansible_status }}</td>
+                </tr>
+                <!-- 任务错误信息 -->
+                {% ifequal task_result.color 'red' %}
+                    <tr class="cust_tr {{ task_result.color }}">
+                        <td></td>
+                        <td colspan="2" title="{{ task_result.content }}">
+                            {{ task_result.content|truncatechars:100 }}
+                        </td>
+                    </tr>
+                {% endifequal %}
+            {% endfor %}
             </tbody>
         </table>
     </div>

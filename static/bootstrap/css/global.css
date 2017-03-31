@@ -58,6 +58,10 @@
     color: red;
 }
 
+.error {
+    color: red;
+}
+
 div#reload {
     text-align: center;
     position: fixed;
@@ -79,12 +83,13 @@ div#reload {
 }
 
 div.dialog tr.cust_tr {
-    display: block;
+    /*display: block;*/
     padding: 15px;
+    line-height: 30px;
 }
 
 div.dialog tr.cust_tr td:first-child {
-    width: 80px;
+    width: 10%;
     text-align: right;
     vertical-align: top;
 }

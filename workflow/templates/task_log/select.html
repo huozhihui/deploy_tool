@@ -1,0 +1,35 @@
+{#{% extends "extends/table.html" %}#}
+{% extends "extends/base_page_no_menu.html" %}
+{% block title %}{{ title_name }}{% endblock %}
+{% block page-header %}{{ title_name }}{% endblock %}
+{% block panel-body %}
+    {% include 'includes/alert_msg.html' %}
+    {% block content %}
+        <div class="dataTable_wrapper">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                <tr>{% include './_th.html' %}</tr>
+                </thead>
+                <tbody>
+                {% for obj in object_list %}
+                    <tr {% ifequal tid obj.id %}style="color:blue;"{% endifequal %}
+                        class="{% cycle 'odd' 'even' %} gradeX">
+                        {% include './_td.html' %}
+                        <td>{{ obj.use_time }}</td>
+                        <td class="center">
+                            <a href="#" class="btn btn-default" data-target="#myModal" data-toggle="modal"
+                               onclick="show_dialog('{% url 'homework_deploy_log' obj.id %}')" remote="true">详细</a>
+                            <a href="/{{ class_name }}/delete/{{ obj.id }}" data-del="true"
+                               class="btn btn-default">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include 'includes/use_dialog.html' %}
+        {#    <br/>#}
+        {#    <a href="/{{ class_name }}/new" class="btn btn-default">添加</a>#}
+    {% endblock %}
+    {% block form %}{% endblock %}
+{% endblock %}
