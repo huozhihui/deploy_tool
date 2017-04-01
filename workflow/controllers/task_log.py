@@ -86,7 +86,7 @@ def _set_deploy(task, task_log, data):
         print '主机{host_ip}{msg}'.format(host_ip=host_ip, msg=msg)
 
     try:
-        _playbook_api(task_log.id, host_ip, params, task_log)
+        _playbook_api(task_log.id, new_yml, params)
         data.update({'status': 1, 'status_name': "正在部署"})
         msg = '调用{playbook_name} playbook成功!'.format(playbook_name=playbook_name)
         content.append(msg)
@@ -159,23 +159,6 @@ def _get_deploy_result(task, task_log, data):
     TaskLog.objects.filter(id=task_log.id).update(status=data['status'], content=','.join(content))
 
 
-# 调用playbook_api 接口
-@ext_helper.thread_method
-def _playbook_api(tid, host_ip, params, task_log):
-    # 调用接口
-    yaml_list = [str(tmp_ansible_yml)]
-    # 将params插入到额外变量
-    extra_vars = params
-    code = ansible_playbook_api.api(tid, yaml_list, extra_vars)
-    if os.path.exists(tmp_ansible_yml):
-        os.remove(tmp_ansible_yml)
-
-        # retry_yml = "{name}.retry".format(name=yml_name)
-        # tmp_retry_yml = os.path.join(settings.ANSIBLE_YAMLS, retry_yml)
-        # if os.path.exists(tmp_ansible_yml):
-        #     os.remove(tmp_ansible_yml)
-
-
 # 根据ip生成对应的yml文件
 def create_ip_yml(task_log):
     host_ip = task_log.host.ip
@@ -209,6 +192,21 @@ def yml_step_count(yml_path):
             step_count += len(tasks)
     return step_count
 
+
+# 调用playbook_api 接口
+@ext_helper.thread_method
+def _playbook_api(tid, yml_path, params):
+    yaml_list = [str(yml_path)]
+    # 将params插入到额外变量
+    extra_vars = params
+    code = ansible_playbook_api.api(tid, yaml_list, extra_vars)
+    if os.path.exists(yml_path):
+        os.remove(yml_path)
+
+        # retry_yml = "{name}.retry".format(name=yml_name)
+        # tmp_retry_yml = os.path.join(settings.ANSIBLE_YAMLS, retry_yml)
+        # if os.path.exists(tmp_ansible_yml):
+        #     os.remove(tmp_ansible_yml)
 
 # 重新部署
 @transaction.atomic

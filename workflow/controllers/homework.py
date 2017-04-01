@@ -115,7 +115,7 @@ def select_deploy(request, id):
             task = None
 
         if (task and task.homework_id == id):
-            request.session['msg'] = u"您还有未完成的部署任务(%s),请首先完成。" % task.uuid
+            request.session['msg'] = u"您还有未完成的部署任务(%s),请完成或删除后再操作。" % task.uuid
             return HttpResponseRedirect("/homework/confirm_deploy")
             # return HttpResponseRedirect("/task")
         else:
@@ -341,11 +341,11 @@ def confirm_deploy(request):
     homework = HomeWork.objects.get(id=hid)
     task = Task.objects.get(id=tid)
     parameters = homework.parameter_set.filter(Q(user_id=request.user.id) | Q(user__is_superuser=1))
-    task_logs = task.tasklog_set.filter(Q(status=0) or Q(status=1)).order_by('num')
-    if not task_logs:
-        request.session['msg'] = "请首先选择角色!"
-        return select_role(request)
-    # nodes = _get_nodes(tid)
+    task_logs = task.tasklog_set.filter(Q(status=0) | Q(status=1)).order_by('num')
+    role_manages = Task.objects.get(id=tid).role_manages()
+    # if not role_manages:
+    #     request.session['msg'] = "请首先选择角色!"
+    #     return select_role(request)
 
     render_url = "%s/%s" % (_class_name(), 'confirm_deploy.html')
     return render(request, render_url, locals())
