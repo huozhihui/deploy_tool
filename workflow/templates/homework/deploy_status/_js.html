@@ -1,7 +1,7 @@
 <script>
-    var frequency = 1000
+    var frequency = 1000;
     my_int = setInterval(run, frequency);
-{#        run()#}
+    {#        run()#}
     $(function () {
         if (window.WebSocket == undefined) {
             alert('浏览器不支持Web Socket');
@@ -11,7 +11,27 @@
 
     function run() {
         update_rest_time();
-        setTimeout(ws_ready, 2000);
+        setTimeout(ws_ready, 3000);
+    }
+
+    // 动态更新剩余时间
+    function update_rest_time() {
+        console.log('update rest time');
+        var d_tr = $('#t_deploy tbody').children();
+        d_tr.each(function () {
+            var refresh_img_td = $(this).children('td:nth-child(6)');
+            var real_time = $(this).children('td:nth-last-child(3)');
+            if (refresh_img_td.html() != '') {
+                task_log_id = $(this).attr('id').split('_')[1];
+                $.ajax({
+                    url: "/task_log/update_rest_time/" + task_log_id,
+                    method: "get",
+                    success: function (response) {
+                        real_time.text(response.msg)
+                    }
+                })
+            }
+        });
     }
 
 
@@ -19,7 +39,7 @@
     function ws_ready() {
         retry_tr = new Array();
         var first_tr = $('#t_deploy tbody').children('tr:first');
-        if(first_tr.length==0){
+        if (first_tr.length == 0) {
             ajax_set_task_complete();
             clearInterval(my_int)
             return;
@@ -145,25 +165,6 @@
         })
     }
 
-    // 动态更新剩余时间
-    function update_rest_time() {
-        console.log('update rest time');
-        var d_tr = $('#t_deploy tbody').children();
-        d_tr.each(function () {
-            var refresh_img_td = $(this).children('td:nth-child(6)');
-            var real_time = $(this).children('td:nth-last-child(3)');
-            if (refresh_img_td.html() != '') {
-                task_log_id = $(this).attr('id').split('_')[1];
-                $.ajax({
-                    url: "/task_log/update_rest_time/" + task_log_id,
-                    method: "get",
-                    success: function (response) {
-                        real_time.text(response.msg)
-                    }
-                })
-            }
-        });
-    }
 
     // 将准备部署或正在部署的任务ids传入后台,获取相应的返回信息
     {#    function ajax_send_date(id) {#}

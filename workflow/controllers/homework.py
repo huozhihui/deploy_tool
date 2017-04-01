@@ -132,6 +132,7 @@ def select_deploy(request, id):
 @check_session('tid', '/homework')
 def select_role(request):
     request.session['tab_active'] = 1
+    msg = ext_helper.get_msg(request)
     hid = request.session.get('hid', None)
     homework = HomeWork.objects.get(id=hid)
 
@@ -270,7 +271,10 @@ def config_params(request):
     homework = HomeWork.objects.get(id=hid)
 
     tid = request.session.get('tid', None)
-    role_manages = Task.objects.get(id=tid).role_manages
+    role_manages = Task.objects.get(id=tid).role_manages()
+    if not role_manages:
+        request.session['msg'] = "请首先选择角色!"
+        return select_role(request)
 
     parameters = homework.parameter_set.filter(Q(user_id=request.user.id) | Q(user__is_superuser=1))
     form = ParameterForm()
@@ -298,7 +302,7 @@ def update_params(request, id):
     id = ext_helper.to_int(id)
 
     tid = request.session.get('tid', None)
-    role_manages = Task.objects.get(id=tid).role_manages
+    role_manages = Task.objects.get(id=tid).role_manages()
     parameter = Parameter.objects.get(id=id)
     if request.method == 'GET':
         form = ParameterForm(instance=parameter)
@@ -338,6 +342,9 @@ def confirm_deploy(request):
     task = Task.objects.get(id=tid)
     parameters = homework.parameter_set.filter(Q(user_id=request.user.id) | Q(user__is_superuser=1))
     task_logs = task.tasklog_set.filter(Q(status=0) or Q(status=1)).order_by('num')
+    if not task_logs:
+        request.session['msg'] = "请首先选择角色!"
+        return select_role(request)
     # nodes = _get_nodes(tid)
 
     render_url = "%s/%s" % (_class_name(), 'confirm_deploy.html')

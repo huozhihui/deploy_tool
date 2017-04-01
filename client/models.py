@@ -22,7 +22,7 @@ class RoleManage(CommonDescribe, CommonName, Base):
     # tag===》标示Ansible-playbook 参数分组
 
     # name = models.CharField("名称", max_length=20)
-    num = models.IntegerField(verbose_name="序号")
+    num = models.IntegerField(verbose_name="顺序编号")
     timeout = models.IntegerField(verbose_name="超时时长(s)", default=180)
     playbook = models.CharField("Playbook", max_length=255, blank=True, null= True)
     playbook_name = models.CharField("Playbook名称", max_length=50, blank=True, null= True)

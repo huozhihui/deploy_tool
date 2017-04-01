@@ -38,11 +38,10 @@ function write_file_code(st) {
 }
 
 // 弹出框
-function show_dialog(url, data) {
+function show_dialog(url) {
     $.ajax({
         url: url,
         method: "get",
-        data: data,
         success: function (response) {
             $('#update_div').html(response);
         }
