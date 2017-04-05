@@ -18,16 +18,7 @@ def new(request):
     class_name = _class_name()
     operation = "添加"
     if request.method == 'POST':  # 当提交表单时
-        print request.POST
-        obj = get_object_or_404(DynamicVar, name=request.POST['name'])
-        print "aaa"
-        print obj
-        form = DynamicVarForm(request.POST, instance=obj)
-        print form.is_valid()
-        print form.save()
-        # if form.is_valid():
-
-    #     instance, msg= ext_helper.create_date(request, 'DynamicVar', 'name')
+        instance, msg= ext_helper.create_date(request, 'DynamicVar', 'name')
     form = DynamicVarForm()
     return render(request, 'dynamic_var/form.html', locals())
 
