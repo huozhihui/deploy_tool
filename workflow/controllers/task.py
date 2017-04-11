@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from workflow.controllers import *
-from workflow.models import Task
+from workflow.models import Task, TaskLog
 
 
 def index(request):
@@ -18,9 +18,16 @@ def delete(request, id):
     id = ext_helper.to_int(id)
     tid = request.session.get('tid', None)
     obj = Task.objects.get(pk=id)
+    task_logs = obj.tasklog_set.all()
     obj.delete()
     if obj.id:
         request.session['msg'] = "数据删除失败!"
+        # 清除该任务的redis缓存
+        for task_log in task_logs:
+            print task_log
+            print task_log.redis_key_info()
+            print task_log.redis_key_result()
+            redis_api.Rs.delete(task_log.redis_key_info(), task_log.redis_key_result())
     else:
         # 如果清除的是当前的任务,则清除session
         if id == tid:
@@ -37,6 +44,7 @@ def continue_deploy(request, id):
 
 def set_task_complete(request):
     tid = request.session.get('tid', None)
+    # 更新任务状态为完成
     Task.objects.filter(id=tid).update(status=2)
     ext_helper.del_session(request, 'tid')
     return HttpResponse(json.dumps({'msg': 'Update Task status Successfully'}), content_type='application/json')

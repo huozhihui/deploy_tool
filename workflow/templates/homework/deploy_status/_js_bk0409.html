@@ -1,72 +1,87 @@
 <script>
-{#    var frequency = 1000;#}
-{#    var my_int = setInterval(update_rest_time, frequency);#}
-
+    var frequency = 1000;
+    var my_int = setInterval(run, frequency);
+    {#        run()#}
     $(function () {
         if (window.WebSocket == undefined) {
             alert('浏览器不支持Web Socket');
             return false
         }
-        ws_ready();
-    });
+    })
+
+    function run() {
+        update_rest_time();
+        setTimeout(ws_ready, 3000);
+        {#                ws_ready()#}
+    }
 
     // 动态更新剩余时间
     // 判断刷新图片是否存在
     function update_rest_time() {
         console.log('update rest time');
-        var first_tr = $('#t_deploy tbody').children('tr:first');
-        if (first_tr.length == 0) {
-            ajax_set_task_complete();
-            clearInterval(my_int);
-            return;
-        }
-        if (first_tr.hasClass('red')) {
-            console.log('has red')
-            clearInterval(my_int);
-            return;
-        }
-        var refresh_img_td = first_tr.children('td:nth-child(6)');
-        if (refresh_img_td.html() != '') {
-            var task_id_td = first_tr.children('td:nth-child(1)');
-            var ip_td = first_tr.children('td:nth-child(2)');
-            var status_name_td = first_tr.children('td:nth-child(4)');
-            var real_time_td = first_tr.children('td:nth-child(5)');
-            key = task_id_td.text() + "-" + ip_td.text() + '-info';
-            $.ajax({
-                url: "/task_log/update_rest_time/" + key,
-                method: "get",
-                success: function (response) {
-                    if (response.state == 'error') {
-                        $(this).addClass('red');
-                        status_name_td.text('部署中止');
-                        refresh_img_td.empty();
-                        $('div[role=alert]').removeClass('hidden');
-                        $('div[role=alert]').children('strong').text(response.msg);
-                    } else if (response.state == 'stop') {
-                        // 不做任何操作
-                    } else {
-                        real_time_td.text(response.msg)
+        var d_tr = $('#t_deploy tbody').children();
+        d_tr.each(function () {
+            var task_id_td = $(this).children('td:nth-child(1)');
+            var ip_td = $(this).children('td:nth-child(2)');
+            var refresh_img_td = $(this).children('td:nth-child(6)');
+            var real_time = $(this).children('td:nth-last-child(3)');
+            if (refresh_img_td.html() != '') {
+                key = task_id_td.text() + "-" + ip_td.text() + '-info';
+                $.ajax({
+                    url: "/task_log/update_rest_time/" + key,
+                    method: "get",
+                    success: function (response) {
+                        if (response.state == 'error') {
+                            $(this).addClass('red');
+                            refresh_img_td.empty();
+                            $('div[role=alert]').removeClass('hidden');
+                            $('div[role=alert]').children('strong').text(response.msg);
+                        } else if (response.state == 'stop') {
+                            // 不做任何操作
+                        } else {
+                            real_time.text(response.msg)
+                        }
                     }
-                }
-            })
-        }
+                })
+            }
+        });
     }
 
 
     // 调用ws
     function ws_ready() {
         // 如果要部署的任务为空,直接退出执行
-        var first_tr = $('#t_deploy tbody').children('tr:first');
-        if (first_tr.length == 0) {
+        var d_all_trs = $('#t_deploy tbody').children();
+        if (d_all_trs.length == 0) {
+            ajax_set_task_complete();
+            clearInterval(my_int)
             return;
         }
 
-        if (first_tr.hasClass('red')) {
+        var retry_trs = new Array();
+        var send_data = new Array();
+        var first_tr = $('#t_deploy tbody').children('tr:first');
+        var role_name = first_tr.children('td:nth-child(3)').text();
+        var ready_trs = $('#t_deploy tr[role=' + role_name + ']');
+        first_tr.each(function () {
+            if ($(this).hasClass('red')) {
+                retry_trs.push($(this));
+            } else {
+                task_log_id = $(this).children('td:nth-child(1)').text();
+                ip = $(this).children('td:nth-child(2)').text();
+                // 要发送的数据
+                var data = {"task_log_id": task_log_id, "ip": ip};
+                send_data.push(data);
+                // Connect to Web Socket
+                {#                ws = new WebSocket("ws://{{ base_url }}" + '/deploy_status/' + task_log_id);#}
+                {#                conn_websocket(ws, data)#}
+            }
+        });
+
+        // 当重试的行数等于当前部署的角色的行数时候,则停止部署。
+        if (retry_trs.length == first_tr.length) {
+            clearInterval(my_int)
         } else {
-            var task_id_td = first_tr.children('td:nth-child(1)');
-            var ip_td = first_tr.children('td:nth-child(2)');
-            // 要发送的数据
-            var send_data = {"task_log_id": task_id_td.text(), "ip": ip_td.text()};
             conn_websocket('{{ base_url }}', 'deploy_status', send_data);
         }
     }
@@ -76,7 +91,7 @@
     function ws_invoke(data) {
         console.log('ws_invoke')
         console.log(data)
-        var ws_state = data.ws_state;
+        ws_state = data.ws_state;
         var status = data.status;
         var status_name = data.status_name
         var tr = $('#tr_' + data.id);
@@ -103,15 +118,16 @@
             $('#t_result tr:last').addClass('green');
         } else if (status > 2) {
             tr.addClass('red');
-            retry_text = operate_td.children('a:nth-child(2)').text();
-            if (retry_text != '重试') {
-                old_html = operate_td.html();
+            a_text = operate_td.children('a:nth-child(2)').text();
+            if (a_text != '重试') {
+                old_html = operate_td.html()
                 retry_html = '<a href="#" onclick="retry_deploy(\'' + data.id + '\')">重试</a>&nbsp;';
                 delete_html = '<a href="#" onclick="ajax_delete_data(\'/homework/delete_task_log/' + data.id + '\', this)">删除</a>';
                 operate_td.html(old_html + retry_html + delete_html)
             }
             // 删除刷新图片
             refresh_img_td.empty();
+            {#            use_name_td.text(data.use_time)#}
             if (ws_state == 'error') {
                 error_msg = host_ip + "部署" + role_name + "失败," + data.ws_msg;
             } else {
@@ -119,6 +135,7 @@
             }
             $('div[role=alert]').removeClass('hidden');
             $('div[role=alert]').children('strong').text(error_msg);
+
         }
     }
 
@@ -152,8 +169,7 @@
                     // 错误提示信息隐藏
                     $('div[role=alert]').addClass('hidden');
                     $('div[role=alert]').children('strong').text('');
-                    var my_int = setInterval(update_rest_time, frequency);
-                    ws_ready();
+                    my_int = setInterval(run, frequency);
                 } else {
                     $('div[role=alert]').removeClass('hidden');
                     $('div[role=alert]').children('strong').text('重试失败, 请联系管理员。');
@@ -170,8 +186,8 @@
                 $(th).parents('tr').remove()
                 $('div[role=alert]').removeClass('hidden');
                 $('div[role=alert]').children('strong').text(response.msg);
-                var my_int = setInterval(update_rest_time, frequency);
-                ws_ready();
+                console.log('aaaaaaaaaaaaaaa')
+                my_int = setInterval(run, frequency);
             }
         });
     }

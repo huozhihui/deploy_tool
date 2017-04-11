@@ -40,75 +40,72 @@ def delete(request, id):
     return index(request)
 
 
-def ws_get_deploy_result(self, task_log_id, ip):
+def ws_get_deploy_result(task_log_id, ip):
     task_log_id = ext_helper.to_int(task_log_id)
     redis_key_info = "{tid}-{ip}-info".format(tid=task_log_id, ip=ip)
     redis_key_result = "{tid}-{ip}-result".format(tid=task_log_id, ip=ip)
-    # 一、首先发送"正在部署"的状态
-    # 二、调用"待部署"方法,即调用ansible接口,如果异常发送"部署异常"的状态
-    # 三、轮询状态(status),
-    #       1、如果"部署失败"则退出循环并发送数据;
-    #       2、如果"正在部署"则调用"正在部署"的方法;
-    status = _get_redis_value(redis_key_info, 'status')
-    if status == '0':
-        main(self, task_log_id, redis_key_info, redis_key_result, '0')
-    while True:
-        status = _get_redis_value(redis_key_info, 'status')
-        if int(status) > 2:
-            _send_data(self, redis_key_info)
-            break
-        if status == '2':
-            _send_data(self, redis_key_info)
-            # 删除redis缓存
-            redis_api.Rs.delete(redis_key_info, redis_key_result)
-            break
-        if status == '1':
-            main(self, task_log_id, redis_key_info, redis_key_result, '1')
-        time.sleep(3)
+    try:
+        L.acquire()  # 加锁
+        main(task_log_id, redis_key_info, redis_key_result)
+        L.release()  # 释放锁
+        send_data = {
+            'id': task_log_id,
+            'status': _get_redis_value(redis_key_info, 'status'),
+            'status_name': _get_redis_value(redis_key_info, 'status_name'),
+            'use_time': _get_redis_value(redis_key_info, 'use_time'),
+            'ws_state': 'success',
+            'ws_msg': 'websocket访问服务端正常。'
+        }
+    except Exception, e:
+        print e
+        redis_api.Rs.hmset(redis_key_info, {'status': 4, 'status_name': "部署失败"})
+        send_data = {
+            'id': task_log_id,
+            'status': 4,
+            'status_name': '部署失败',
+            'ws_state': 'error',
+            'ws_msg': '服务端异常,请解决异常后继续部署!'}
+    return json.dumps(send_data)
 
 
 @ext_helper.thread_method
-def main(self, task_log_id, r_key_info, redis_key_result, status):
-    try:
-        # 该任务的redis数据字典
-        options = redis_api.Rs.hgetall(r_key_info)
+def main(task_log_id, redis_key_info, redis_key_result):
+    status = _get_redis_value(redis_key_info, 'status')
+    rs_content = _get_redis_value(redis_key_info, 'content')
+    # 该任务的redis数据字典
+    options = redis_api.Rs.hgetall(redis_key_info)
 
-        # 状态-待部署
-        if status == "0":
-            data = _set_deploy(r_key_info, options)
+    data = {}
+    # 状态-待部署
+    if status == "0":
+        content_list = _set_deploy(redis_key_info, options)
+        content = ','.join(content_list)
+        redis_api.Rs.hset(redis_key_info, 'content', content)
+        data['step_count'] = _get_redis_value(redis_key_info, 'step_count')
+        data['begin_deploy_at'] = datetime.now()
+        data['content'] = content
 
-        # 状态-正在部署
-        if status == "1":
-            data = _get_deploy_result(r_key_info, redis_key_result, options)
+    # 状态-正在部署
+    if status == "1":
+        content_list = _get_deploy_result(redis_key_info, redis_key_result, options)
+        if content_list:
+            content = ','.join(content_list)
+            rs_content = rs_content + ',' + content
+            redis_api.Rs.hset(redis_key_info, 'content', content)
+            data['content'] = rs_content
 
-        # 保存结果数据
-        TaskLog.objects.filter(id=task_log_id).update(**data)
-    except Exception, e:
-        print e
-        redis_api.Rs.hmset(r_key_info, {'status': 4, 'status_name': "部署失败"})
-        ws_state = 'error'
-        ws_msg = '服务端异常,请解决异常后继续部署!'
-    _send_data(self, r_key_info)
+    data['status'] = _get_redis_value(redis_key_info, 'status')
+    data['timeout'] = _get_redis_value(redis_key_info, 'use_time')
 
-    # if status == '0':
-    #     _send_data(self, r_key_info)
+    # 保存结果数据
+    TaskLog.objects.filter(id=task_log_id).update(**data)
 
-
-# 发送ws数据方法
-def _send_data(self, r_key_info, ws_state='success', ws_msg='websocket访问服务端正常。'):
-    send_data = {
-        'id': int(_get_redis_value(r_key_info, 'id')),
-        'status': int(_get_redis_value(r_key_info, 'status')),
-        'status_name': _get_redis_value(r_key_info, 'status_name'),
-        'use_time': int(_get_redis_value(r_key_info, 'use_time')),
-        'ws_state': ws_state,
-        'ws_msg': ws_msg
-    }
-    self.send(text=json.dumps(send_data), bytes=None)
+    # 删除redis缓存
+    # if data['status'] == '2':
+    #     redis_api.Rs.delete(redis_key_info, redis_key_result)
 
 
 # 待部署的状态
-# @ext_helper.thread_method
 def _set_deploy(r_key_info, options):
     id = ext_helper.to_int(options['id'])
     host_ip = options['host_ip']
@@ -162,17 +159,7 @@ def _set_deploy(r_key_info, options):
         redis_api.Rs.hmset(r_key_info, {'status': 3, 'status_name': "部署失败"})
         msg = '调用{playbook_name} playbook失败'.format(playbook_name=playbook_name)
         content.append(msg)
-
-    content_str = ','.join(content)
-    redis_api.Rs.hset(r_key_info, 'content', content_str)
-    data = {
-        'status': _get_redis_value(r_key_info, 'status'),
-        'timeout': _get_redis_value(r_key_info, 'use_time'),
-        'step_count': _get_redis_value(r_key_info, 'step_count'),
-        'begin_deploy_at': datetime.now(),
-        'content': content_str,
-    }
-    return data
+    return content
 
 
 # @ext_helper.thread_method
@@ -182,9 +169,9 @@ def _get_deploy_result(r_key_info, r_key_result, options):
     timeout = ext_helper.to_int(options['timeout'])
     use_time = ext_helper.to_int(options['use_time'])
     step_count = ext_helper.to_int(options['step_count'])
-    current_step = ext_helper.to_int(options['current_step'])
-    content = options['content'].split(',')
+    current_count = ext_helper.to_int(options['current_step'])
 
+    content = []
     if use_time >= timeout:
         redis_api.Rs.hmset(r_key_info, {'status': 3, 'status_name': "部署失败"})
         msg = '{playbook_name} playbook运行超时!'.format(playbook_name=playbook_name)
@@ -198,7 +185,7 @@ def _get_deploy_result(r_key_info, r_key_result, options):
             redis_api.Rs.hincrby(r_key_info, 'current_step', 1)
             ansible_status = result.get('ansible_status', None)
             # 如果部署完成
-            if step_count == current_step + 1:
+            if step_count == current_count + 1:
                 if ansible_status in ['ok', 'changed', 'skipped']:
                     redis_api.Rs.hmset(r_key_info, {'status': 2, 'status_name': "部署成功"})
                     msg = '{playbook_name}部署成功。'.format(playbook_name=playbook_name)
@@ -210,38 +197,20 @@ def _get_deploy_result(r_key_info, r_key_result, options):
                     content.append(msg)
                     print '主机{host_ip}部署任务结束, {playbook_name}部署失败。'.format(host_ip=host_ip, playbook_name=playbook_name)
             else:
-                # task_log_id = int(r_key_info.split('-')[0])
-                # task_log = TaskLog.objects.get(pk=task_log_id)
-                # task_result = task_log.task_result_set.all()
-                # last_task_result = task_result.last()
-                # # 如果没完成, 判断是否中途失败
-                # if last_task_result and last_task_result.task_is_failed():
-                #     redis_api.Rs.hmset(r_key_info, {'status': 3, 'status_name': "部署失败"})
-                # else:
                 if ansible_status not in ['ok', 'changed', 'skipped']:
                     redis_api.Rs.hmset(r_key_info, {'status': 3, 'status_name': "部署失败"})
                     msg = '{playbook_name}部署失败。'.format(playbook_name=playbook_name)
                     content.append(msg)
-                    print '主机{host_ip}部署任务结束, {playbook_name}部署失败。'.format(host_ip=host_ip,
-                                                                           playbook_name=playbook_name)
+                    print '主机{host_ip}部署任务结束, {playbook_name}部署失败。'.format(host_ip=host_ip, playbook_name=playbook_name)
 
-                # 保存ansible返回的结果
-                try:
-                    Task_Result.objects.create(**result)
-                except Exception, e:
-                    print "主机{host_ip}存储ansible结果异常。".format(host_ip=host_ip)
-                    print e
-                else:
-                    redis_api.Rs.delete(r_key_result)
-
-    content_str = ','.join(content)
-    redis_api.Rs.hset(r_key_info, 'content', content_str)
-    data = {
-        'status': _get_redis_value(r_key_info, 'status'),
-        'timeout': _get_redis_value(r_key_info, 'use_time'),
-        'content': content_str,
-    }
-    return data
+            try:
+                Task_Result.objects.create(**result)
+            except Exception, e:
+                print "主机{host_ip}存储ansible结果异常。".format(host_ip=host_ip)
+                print e
+            else:
+                redis_api.Rs.lpop(r_key_result)
+    return content
 
 
 # 根据ip生成对应的yml文件
@@ -358,15 +327,14 @@ def update_rest_time(request, key):
         use_time = redis_api.Rs.hget(key, 'use_time')
         real_time = int(timeout) - int(use_time)
         if real_time < 0:
-            real_time = 0
+            raise
         state = "success"
         msg = time.strftime('%H:%M:%S', time.gmtime(real_time))
     except Exception, e:
-        msg = "{key}的剩余时间更新异常, 请处理异常后继续完成部署。".format(key=key)
-        print msg
+        print "{key}的剩余时间更新异常, 请处理异常后继续完成部署。".format(key=key)
         print e.message
         state = "error"
-
+        msg = "{key}的剩余时间更新异常, 请处理异常后继续完成部署。".format(key=key)
     return HttpResponse(json.dumps({'state': state, 'msg': msg}), content_type='application/json')
 
 

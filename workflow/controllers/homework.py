@@ -25,14 +25,17 @@ def check_session(key, url):
 
 def check_task_over(func):
     functools.wraps(func)
+
     def wrapper(*args, **kwargs):
         tid = args[0].session.get('tid', None)
         task = Task.objects.get(pk=tid)
-        if task.status == 1:
+        task_logs = task.tasklog_set.all()
+        if (task.status == 1) and task_logs:
             args[0].session['msg'] = u"您还有未完成的部署任务(%s),请首先完成。" % task.uuid
             return HttpResponseRedirect("/homework/confirm_deploy")
         else:
             return func(*args, **kwargs)
+
     return wrapper
 
 
@@ -137,6 +140,7 @@ def select_role(request):
     homework = HomeWork.objects.get(id=hid)
 
     tid = request.session.get('tid', None)
+    task = Task.objects.get(pk=tid)
     task_logs = TaskLog.objects.filter(task_id=tid, user_id=request.user.id)
     select_roles = [t.role_manage_id for t in task_logs]
 
@@ -164,7 +168,6 @@ def confirm_role(request):
     # 删除取消的节点
     if del_roles:
         TaskLog.objects.filter(user_id=user_id, task_id=tid, role_manage_id__in=del_roles).delete()
-
     if roles:
         for role_id in roles:
             role_manage = RoleManage.objects.get(pk=role_id)
@@ -264,6 +267,7 @@ def confirm_node(request):
 @check_session('hid', '/homework')
 @check_session('tid', '/homework')
 def config_params(request):
+    tid = request.session.get('tid', None)
     class_name = _class_name()
     msg = ext_helper.get_msg(request)
     request.session['tab_active'] = 2
@@ -271,7 +275,8 @@ def config_params(request):
     homework = HomeWork.objects.get(id=hid)
 
     tid = request.session.get('tid', None)
-    role_manages = Task.objects.get(id=tid).role_manages()
+    task = Task.objects.get(id=tid)
+    role_manages = task.role_manages()
     if not role_manages:
         request.session['msg'] = "请首先选择角色!"
         return select_role(request)
@@ -300,7 +305,6 @@ def create_params(request):
 def update_params(request, id):
     dialog_title = "编辑参数"
     id = ext_helper.to_int(id)
-
     tid = request.session.get('tid', None)
     role_manages = Task.objects.get(id=tid).role_manages()
     parameter = Parameter.objects.get(id=id)
@@ -310,10 +314,14 @@ def update_params(request, id):
         render_url = "%s/%s" % (_class_name(), 'config_params/dialog_edit.html')
         return render(request, render_url, locals())
     else:
-        d = {'homework_id': request.session['hid'], 'role_manage_id': request.POST['role_id']}
+        role_manage_id = ext_helper.to_int(request.POST['role_id'])
+        d = {'role_manage_id': role_manage_id}
         result_status, msg = ext_helper.update_date(request, id, 'Parameter', 'name', d)
         request.session['msg'] = msg
-        return HttpResponseRedirect(request.POST['come_from'])
+        if 'confirm_deploy' in request.POST['come_from'].split('/'):
+            return confirm_deploy(request)
+        else:
+            return config_params(request)
 
 
 def delete_params(request, id):
@@ -324,7 +332,22 @@ def delete_params(request, id):
 # *************************************** 确认部署 ********************************************
 # 确认部署页面,删除某一节点
 def delete_task_log(request, id):
+    id = ext_helper.to_int(id)
+    task_log = TaskLog.objects.get(pk=id)
+    r_key_info = task_log.redis_key_info()
+    r_key_result = task_log.redis_key_result()
+    tid = task_log.task_id
+
     msg = ext_helper.delete_date(request, 'TaskLog', id)
+
+    # 当该子任务删除时, 需判断redis是否有该任务缓存数据
+    redis_api.Rs.delete(r_key_info, r_key_result)
+
+    # 当该子任务删除时, 需判断总任务是否部署完成
+    task = Task.objects.get(pk=tid)
+    if task.is_completed():
+        task.status = 2
+        task.save()
     return HttpResponse(json.dumps({'msg': msg}), content_type='application/json')
 
 
@@ -365,11 +388,10 @@ def deploy_status(request):
     task = Task.objects.get(id=tid)
     task_logs = task.tasklog_set.all()
 
-    render_error_url = "%s/%s" % (_class_name(), 'confirm_deploy.html')
     # 判断任务角色是否存在
     if not task.role_manages():
-        msg = "请至少选择一个角色后再部署。"
-        return render(request, render_error_url, locals())
+        request.session['msg'] = "请至少选择一个角色后再部署。"
+        return confirm_deploy(request)
     else:
         # 判断任务角色对应的main.yaml文件是否存在
         for role_manage in task.role_manages():
@@ -379,11 +401,11 @@ def deploy_status(request):
             yaml_path = os.path.join(settings.ANSIBLE_YAMLS, playbook)
             # role_yaml_path = os.path.join(settings.ANSIBLE_YAMLS, 'roles', role_manage.playbook_name, 'tasks/main.yml')
             if not os.path.exists(yaml_path):
-                msg = "{role_name}角色的playbook不存在: {path}。".format(
+                request.session['msg'] = "{role_name}角色的playbook不存在: {path}。".format(
                     role_name=role_manage.name, path=yaml_path
                 )
                 print "%s文件不存在。" % str(yaml_path)
-                return render(request, render_error_url, locals())
+                return confirm_deploy(request)
 
                 # if not os.path.exists(role_yaml_path):
                 #     msg = "{role_name}角色的roles不存在: {path}。".format(
@@ -393,8 +415,8 @@ def deploy_status(request):
                 #     return render(request, render_error_url, locals())
 
     if not task_logs:
-        msg = "选择的角色至少关联一个节点后再部署。"
-        return render(request, render_error_url, locals())
+        request.session['msg'] = "选择的角色至少关联一个节点后再部署。"
+        return confirm_deploy(request)
 
     # 生成ansible hosts文件
     hosts_path = os.path.join(settings.ANSIBLE_HOSTS, 'hosts')
@@ -402,14 +424,36 @@ def deploy_status(request):
     try:
         _generate_ansible_hosts(hosts_path, bk_path, task_logs)
     except Exception, e:
-        msg = "生成Ansible hosts文件失败, %s" % e
-        return render(request, render_error_url, locals())
+        request.session['msg'] = "生成Ansible hosts文件失败, %s" % e
+        return confirm_deploy(request)
 
+    # 判断Redis是否连接
     try:
         redis_api.Rs.ping()
     except Exception, e:
-        msg = "Redis连接失败, 请启动后再尝试。"
-        return render(request, render_error_url, locals())
+        request.session['msg'] = "Redis连接失败, 请启动后再尝试。"
+        return confirm_deploy(request)
+
+    # 将任务明细写入Redis中
+    for task_log in task_logs:
+        data = OrderedDict({
+            'id': task_log.id,
+            'status': task_log.status,
+            'status_name': task_log.status_name(),
+            'timeout': task_log.role_manage.timeout,
+            'step_count': task_log.step_count,
+            'playbook': task_log.role_manage.playbook,
+            'playbook_name': task_log.role_manage.playbook_name,
+            'params': params_json,
+            'role_name': task_log.role_manage.name,
+            'host_ip': task_log.host.ip
+        })
+        redis_key_info = task_log.redis_key_info()
+        other = {'use_time': 0, 'current_step': 0, 'content': ''}
+        for k, value in other.items():
+            if not redis_api.Rs.hexists(redis_key_info, k):
+                data[k] = value
+        redis_api.Rs.hmset(redis_key_info, data)
 
     # 更新task中的状态为开始部署(status)和参数(params)
     update_task = {'status': 1}
@@ -422,6 +466,7 @@ def deploy_status(request):
     result_list = task.tasklog_set.filter(status=2).order_by('num')
     render_url = "%s/%s" % (_class_name(), 'deploy_status.html')
     return render(request, render_url, locals())
+
 
 def deploy_log(request, id):
     id = ext_helper.to_int(id)

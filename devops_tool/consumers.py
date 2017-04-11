@@ -5,90 +5,35 @@ from channels.generic import BaseConsumer
 from channels.sessions import channel_session
 import json
 import time
+import datetime
 from workflow.controllers import task_log
-
-#message.reply_channel    一个客户端通道的对象
-#message.reply_channel.send(chunk)  用来唯一返回这个客户端
-
-#一个管道大概会持续30s
-#当连接上时，发回去一个connect字符串
-@channel_session
-def ws_connect(message):
-    message.reply_channel.send({'text': json.dumps({"accept": True, "data": "Successfully"})})
-
-
-#将发来的信息原样返回
-@channel_session
-def ws_message(message):
-    print message
-    # text = json.loads(message.content['text'])
-    # method_name = eval(text['invoke_method'])
-    # dict = json.dumps(method_name(text))
-    # message.reply_channel.send({'text': dict})
-    message.reply_channel.send({'text': 'send message'})
-
-
-#断开连接时发送一个disconnect字符串，当然，他已经收不到了
-def ws_disconnect(message):
-    message.reply_channel.send({"disconnect": 'disconnect'})
+from common.redis_api import Rs
 
 
 class DeployStatus(WebsocketConsumer):
     def connect(self, message, **kwargs):
-        print "connect"
+        print "connect websocket successfully"
         self.message.reply_channel.send({'text': json.dumps({"accept": True, "connect": "Successfully"})})
 
     def receive(self, text=None, bytes=None, **kwargs):
-        data = json.loads(text)
-        content = task_log.ws_get_deploy_result(data['tid'], data['task_log_id'])
-        self.send(text=content, bytes=bytes)
-
-    def disconnect(self, message, **kwargs):
-        pass
+        receive_data = json.loads(text)
+        task_log_id = receive_data['task_log_id']
+        ip = receive_data['ip']
+        send_data = task_log.ws_get_deploy_result(self, task_log_id, ip)
 
 
+        # redis_key_info = "{tid}-{ip}-info".format(tid=task_log_id, ip=ip)
+        # while True:
+        #     status = Rs.hget(redis_key_info, 'status')
+        #     print status
+        #     if int(status) < 2:
+        #         send_data = task_log.ws_get_deploy_result(task_log_id, ip)
+        #         self.send(text=json.dumps(send_data), bytes=bytes)
+        #         time.sleep(3)
+        #     else:
+        #         # self.send(text=json.dumps(send_data), bytes=bytes)
+        #         break
 
-        # class Terminal(WebsocketConsumer):
-#     def connect(self, message, **kwargs):
-#         print "connect"
-#         url = message.content['path']
-#         host_ip, username, password, port = url.split('/')[2:]
-#         try:
-#             Terminal.client = MySSH(username, password, host_ip, port)
-#         except Exception, e:
-#             print e
-#             return
-#
-#         try:
-#             while True:
-#                 data = Terminal.client.chan.recv(1024)
-#                 # data = Terminal.client.chan.recv(Terminal.client.bufsize)
-#                 if not len(data):
-#                     return
-#                 message.reply_channel.send({'text': json.dumps({"data": data})})
-#         finally:
-#             Terminal.client.ssh.close()
-#
-#
-#     def receive(self, text=None, bytes=None, **kwargs):
-#         try:
-#             Terminal.client.chan.send(json.loads(text)['data'])
-#         except Exception, e:
-#             print e
-#             print text
-#             self.send(text=json.loads(text)['data'], bytes=bytes)
-#         # self.send(text=json.loads(text)['data'], bytes=bytes)
-#
-#
-#     def disconnect(self, message, **kwargs):
-#         pass
-#
-# class MyConsumer(BaseConsumer):
-#
-#     method_mapping = {
-#         "channel.name.here": "method_name",
-#     }
-#
-#     def method_name(self, message, **kwargs):
-#         print "test method_name"
-#         pass
+
+def disconnect(self, message, **kwargs):
+    pass

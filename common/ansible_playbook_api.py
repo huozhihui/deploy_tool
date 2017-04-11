@@ -60,7 +60,7 @@ class ResultCallback(CallbackBase):
         if content:
             data = {'task_log_id': self.tid, 'task_name': task_name, 'content': content, 'ansible_status': status}
             ip = result._host.name
-            key = "{tid}-{ip}".format(tid=self.tid, ip=ip)
+            key = "{tid}-{ip}-result".format(tid=self.tid, ip=ip)
             Rs.rpush(key, json.dumps(data))
 
 class Options(object):

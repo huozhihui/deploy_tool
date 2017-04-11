@@ -27,6 +27,15 @@ class Task(Base):
     uuid = models.CharField(max_length=20)
     status = models.IntegerField()
 
+    # 判断该任务是否结束
+    def is_completed(self):
+        status_list = list(self.tasklog_set.all().values_list('status', flat=True))
+        if (0 in status_list) or (1 in status_list):
+            return False
+        else:
+            return True
+
+
     def status_name(self):
         STATUS = {"0": "待部署", "1": "正在部署", "2": "部署完成"}
         return STATUS[str(self.status)]
@@ -42,16 +51,42 @@ class TaskLog(Base):
     host = models.ForeignKey(Host)
     role_manage = models.ForeignKey(RoleManage)
     num = models.IntegerField(verbose_name="序号")
-    content = models.CharField(max_length=255)
+    content = models.CharField(max_length=255, blank=True, null=True)
     status = models.IntegerField()
     begin_deploy_at = models.DateTimeField(blank=True, null=True)
     ansible_status = models.CharField(max_length=10, blank=True, null=True)
     # role_name = models.CharField(max_length=30, blank=True, null=True)
-    step_count = models.IntegerField(blank=True, null=True)
+    step_count = models.IntegerField(default=0)
     timeout = models.IntegerField(default=180)
 
     # def __str__(self):
     #     return self.id
+
+    # Redis-key
+    def redis_key(self):
+        return "{tasklog_id}-{ip}".format(tasklog_id=self.id, ip=self.host.ip)
+
+    # 任务在redis中详细信息
+    def redis_key_info(self):
+        return "{redis_key}-info".format(redis_key=self.redis_key())
+
+    # 任务在redis中结果
+    def redis_key_result(self):
+        return "{redis_key}-result".format(redis_key=self.redis_key())
+
+    # 总步骤数
+
+    #当前步骤
+    def current_step(self):
+        return len(self.task_result_set.all())
+
+    def progress_per(self):
+        try:
+            per = self.current_step() * 100 / float(self.step_count)
+        except:
+            per = 0
+        return "{0:.0f}%".format(per)
+
 
     # 剩余时间
     def rest_time(self):

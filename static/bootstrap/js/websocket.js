@@ -1,14 +1,15 @@
 /**
  * Created by huozhihui on 16/12/13.
  */
-// function conn_websocket(host, method, date) {
-function conn_websocket(ws, date) {
+function conn_websocket(host, method, data) {
+// function conn_websocket(ws, data) {
     // ws = new WebSocket("ws://" + host + '/' + method + '/' + date['task_log_id']);
+    ws = new WebSocket("ws://" + host + '/' + method);
     console.log(ws)
 
     ws.onopen = function () {
         output("onopen");
-        ws.send(JSON.stringify(date));
+        ws.send(JSON.stringify(data));
     };
 
     ws.onmessage = function (e) {
@@ -23,7 +24,11 @@ function conn_websocket(ws, date) {
         } else {
             h = JSON.parse(e.data);
             ws_invoke(h);
-            ws.close();
+            // ws.close();
+            // for(var i=0; i < h.length; i++){
+            //     output(JSON.parse(h[i]));
+            //     ws_invoke(JSON.parse(h[i]));
+            // }
         }
 
     };

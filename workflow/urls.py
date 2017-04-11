@@ -43,6 +43,6 @@ urlpatterns = [
     url(r'^task_log/select/(\d{1,8})$', login_required(task_log.select), name='task_log_select'),
     url(r'^task_log/delete/(\d{1,8})$', login_required(task_log.delete), name='task_log_delete'),
     url(r'^task_log/retry_deploy/(\d{1,8})$', login_required(task_log.retry_deploy), name='task_log_retry_deploy'),
-    url(r'^task_log/update_rest_time/(\d{1,8})$', login_required(task_log.update_rest_time), name='task_log_update_rest_time'),
+    url(r'^task_log/update_rest_time/(?P<key>[\w\-\.]{9,29})$', login_required(task_log.update_rest_time), name='task_log_update_rest_time'),
 
 ]
