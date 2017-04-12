@@ -72,9 +72,11 @@ def _get_ansible_result(ws, task_log_id, r_key_info, r_key_result):
             break
         if status == 1:
             ws_status = main(ws, task_log_id, r_key_info, r_key_result, 1)
-            if ws_status != 'success':
-                _send_data(ws, r_key_info, ws_status)
-        redis_api.Rs.hincrby(r_key_info, 'use_time', 3)
+            # if ws_status != 'success':
+            #     _send_data(ws, r_key_info, ws_status)
+            _send_data(ws, r_key_info, ws_status)
+
+    redis_api.Rs.hincrby(r_key_info, 'use_time', 3)
         time.sleep(3)
 
 
