@@ -419,10 +419,8 @@ def deploy_status(request):
         return confirm_deploy(request)
 
     # 生成ansible hosts文件
-    hosts_path = os.path.join(settings.ANSIBLE_HOSTS, 'hosts')
-    bk_path = os.path.join(settings.ANSIBLE_HOSTS, 'bk_hosts')
     try:
-        _generate_ansible_hosts(hosts_path, bk_path, task_logs)
+        _generate_ansible_hosts(task_logs)
     except Exception, e:
         request.session['msg'] = "生成Ansible hosts文件失败, %s" % e
         return confirm_deploy(request)
@@ -504,18 +502,32 @@ def _create_task(request, hid, tid):
     request.session['tid'] = task.id
 
 
-def _generate_ansible_hosts(file_path, bk_path, task_logs):
+def _generate_ansible_hosts(task_logs):
     data = defaultdict(list)
+    pre_data = defaultdict(list)
     for task_log in task_logs:
         node = task_log.host
+        group_name = task_log.role_manage.playbook_name
         d = OrderedDict()
         d['ip'] = node.ip
-        d['username'] = node.username
-        d['password'] = node.password
         d['port'] = node.port
-        group_name = task_log.role_manage.playbook_name
-        data[group_name].append(d)
+        if group_name == 'pre_install':
+            d['username'] = settings.ANSIBLE_INIT_USER
+            d['password'] = settings.ANSIBLE_INIT_PASS
+            pre_data[group_name].append(d)
+        else:
+            d['username'] = node.username
+            d['password'] = node.password
+            data[group_name].append(d)
+    hosts_path = os.path.join(settings.ANSIBLE_HOSTS, 'hosts')
+    bk_path = os.path.join(settings.ANSIBLE_HOSTS, 'bk_hosts')
+    pre_hosts_path = os.path.join(settings.ANSIBLE_HOSTS, 'pre_install_hosts')
+    pre_bk_path = os.path.join(settings.ANSIBLE_HOSTS, 'bk_pre_install_hosts')
+    _write_hosts_file(hosts_path, bk_path, data)
+    _write_hosts_file(pre_hosts_path, pre_bk_path, pre_data)
 
+
+def _write_hosts_file(file_path, bk_path, data):
     if os.path.exists(file_path):
         shutil.move(file_path, bk_path)
 

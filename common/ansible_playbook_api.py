@@ -84,13 +84,13 @@ class Options(object):
         return None
 
 
-def api(tid, yml_list, extra_vars={}):
+def api(tid, host_list, yml_list, extra_vars={}):
     print 'task id: {tid}'.format(tid=tid)
     print 'yml path: {yml}'.format(yml=yml_list)
     print 'extra_vars: {extra_vars}'.format(extra_vars=extra_vars)
     loader = DataLoader()  # 用来加载解析yaml文件或JSON内容,并且支持vault的解密
     variable_manager = VariableManager()  # 管理变量的类,包括主机,组,扩展等变量,之前版本是在 inventory 中的
-    inventory = Inventory(loader=loader, variable_manager=variable_manager)
+    inventory = Inventory(loader=loader, variable_manager=variable_manager, host_list=host_list)
     variable_manager.set_inventory(inventory)  # 根据 inventory 加载对应变量
 
     options = Options()
@@ -114,8 +114,8 @@ if __name__ == '__main__':
     yml_list = ['/Users/huozhihui/huo/ansible/roles/mysql_install/tasks/main.yaml']
     yml_list = ['/Users/huozhihui/huo/paas_deploy/ntp.yml']
     extra_vars = {
-        "ansible_ssh_user": "huo",
-        "ansible_ssh_pass": "huo244",
+        # "ansible_ssh_user": "huo",
+        # "ansible_ssh_pass": "huo244",
         # "ip": '20.20.20.0'
     }
-    api(tid, yml_list, extra_vars)
+    api(tid, host_list, yml_list, extra_vars)

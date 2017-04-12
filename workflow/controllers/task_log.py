@@ -137,9 +137,9 @@ def _set_deploy(r_key_info, options):
     playbook_name = options['playbook_name']
     # 如果事pre_install 角色,切换ubuntu用户
     params = json.loads(params_json)
-    if role_name == 'pre_install':
-        params['ansible_ssh_user'] = settings.ANSIBLE_INIT_USER
-        params['ansible_ssh_pass'] = settings.ANSIBLE_INIT_PASS
+    # if role_name == 'pre_install':
+    #     params['ansible_ssh_user'] = settings.ANSIBLE_INIT_USER
+    #     params['ansible_ssh_pass'] = settings.ANSIBLE_INIT_PASS
 
     content = []
     msg = '开始安装部署{playbook_name}......'.format(playbook_name=playbook_name)
@@ -167,7 +167,7 @@ def _set_deploy(r_key_info, options):
         return content
 
     tid = ext_helper.to_int(id)
-    resule_code = _playbook_api(tid, new_yml, params, host_ip)
+    resule_code = _playbook_api(tid, new_yml, params, host_ip, role_name)
     if resule_code:
         redis_api.Rs.hmset(r_key_info, {'status': 1, 'status_name': "正在部署"})
         msg = '调用{playbook_name} playbook成功!'.format(playbook_name=playbook_name)
@@ -315,12 +315,17 @@ def _yml_step_count(host_ip, yml_path):
 
 # 调用playbook_api 接口
 # @ext_helper.thread_method
-def _playbook_api(tid, yml_path, params, host_ip):
+def _playbook_api(tid, yml_path, params, host_ip, role_name):
     try:
         yaml_list = [str(yml_path)]
         # 将params插入到额外变量
         extra_vars = params
-        code = ansible_playbook_api.api(tid, yaml_list, extra_vars)
+        if role_name == 'pre_install':
+            host_list = os.path.join(settings.ANSIBLE_HOSTS, 'pre_install_hosts')
+            code = ansible_playbook_api.api(tid, host_list, yaml_list, extra_vars)
+        else:
+            host_list = os.path.join(settings.ANSIBLE_HOSTS, 'hosts')
+            code = ansible_playbook_api.api(tid, host_list, yaml_list, extra_vars)
         if os.path.exists(yml_path):
             os.remove(yml_path)
 
