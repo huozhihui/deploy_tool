@@ -7,8 +7,7 @@
             <thead>
             <tr>
                 {% include './_th.html' %}
-{#                <th width="20%">剩余时间</th>#}
-{#                <th width="5%"></th>#}
+                <th></th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -17,8 +16,7 @@
                 <tr id='tr_{{ obj.id }}' role="{{ obj.role_manage.name }}"
                     class="{% cycle 'odd' 'even' %} {{ obj.color }} gradeX">
                     {% include './_td.html' %}
-                    {#                    <td>{{ obj.rest_time }}</td>#}
-
+                    <td></td>
                     <td class="center">
                         <a href="#" data-target="#myModal" data-toggle="modal"
                            onclick="show_dialog('{% url 'homework_deploy_log' obj.id %}')" remote="true">详细</a>

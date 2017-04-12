@@ -7,8 +7,7 @@
             <thead>
             <tr>
                 {% include './_th.html' %}
-                <th>耗时(s)</th>
-                <th></th>
+                <th width="10%">耗时(s)</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -18,11 +17,7 @@
                     class="{% cycle 'odd' 'even' %} gradeX {% ifequal obj.status 2 %}green{% else %}red{% endifequal %}">
                     {% include './_td.html' %}
                     <td>{{ obj.use_time }}</td>
-                    <td></td>
                     <td class="center">
-                        {% if obj.status > 2 %}
-                            <a href="#" onclick="retry_deploy({{ obj.id }})">重试</a>
-                        {% endif %}
                         <a href="#" data-target="#myModal" data-toggle="modal"
                            onclick="show_dialog('{% url 'homework_deploy_log' obj.id %}')" remote="true">详细</a>
                     </td>

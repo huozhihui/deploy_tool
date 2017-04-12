@@ -43,11 +43,19 @@ def continue_deploy(request, id):
 
 
 def set_task_complete(request):
-    tid = request.session.get('tid', None)
-    # 更新任务状态为完成
-    Task.objects.filter(id=tid).update(status=2)
-    ext_helper.del_session(request, 'tid')
-    return HttpResponse(json.dumps({'msg': 'Update Task status Successfully'}), content_type='application/json')
+    print "更新任务状态"
+    try:
+        tid = request.session.get('tid', None)
+        task = Task.objects.get(pk=tid)
+        if task.is_completed:
+            Task.objects.filter(id=tid).update(status=2)
+            ext_helper.del_session(request, 'tid')
+            msg = 'Update Task status Successfully'
+        else:
+            msg = 'Task not deploy over!'
+    except Exception, e:
+        msg = 'Warn: task update error!'
+    return HttpResponse(json.dumps({'msg': msg}), content_type='application/json')
 
 
 def _title_name():

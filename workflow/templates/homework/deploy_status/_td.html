@@ -4,14 +4,13 @@
 <td>
     {{ obj.status_name }}
 </td>
-{#<td>{{ obj.use_time }}</td>#}
 <td>
     <div class="progress">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{{ obj.current_step }}"
+        <div id="progress_{{ obj.id }}" class="progress-bar progress-bar-striped active"
+             role="progressbar" aria-valuenow="{{ obj.current_step }}"
              aria-valuemin="0" aria-valuemax="100" style="width: {{ obj.progress_per }}">
             {#                                <span class="sr-only">45% Complete</span>#}
         </div>
     </div>
 </td>
 <td>{{ obj.current_step }}/{{ obj.step_count }}</td>
-
