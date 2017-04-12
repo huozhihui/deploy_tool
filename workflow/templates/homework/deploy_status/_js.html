@@ -51,6 +51,7 @@
             if (progress_per == '100%') {
                 ajax_set_task_complete();
             }
+            ws_ready();
         } else if (status > 2) {
             tr.addClass('red');
             update_operate_button(data.id, tr);
