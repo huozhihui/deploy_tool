@@ -77,9 +77,9 @@ def _get_ansible_result(ws, task_log_id, r_key_info, r_key_result):
             _send_data(ws, r_key_info, ws_status)
 
     redis_api.Rs.hincrby(r_key_info, 'use_time', 3)
-        time.sleep(3)
+    time.sleep(3)
 
-
+    
 # @ext_helper.thread_method
 def main(ws, task_log_id, r_key_info, redis_key_result, status):
     try:
@@ -271,6 +271,7 @@ def _get_deploy_result(r_key_info, r_key_result, options):
     TaskLog.objects.filter(id=id).update(**data)
     # return data
 
+
 # 根据ip生成对应的yml文件
 def _create_ip_yml(host_ip, playbook):
     try:
@@ -340,17 +341,22 @@ def _playbook_api(tid, yml_path, params, host_ip, role_name):
         print '主机{host_ip}调用playbook接口失败, {error_msg}'.format(host_ip=host_ip, error_msg=e)
         return False
 
+
 def _host_ip(r_key_info):
     return r_key_info.split('-')[1]
+
 
 def _current_step(r_key_info):
     return int(_get_redis_value(r_key_info, 'current_step'))
 
+
 def _step_count(r_key_info):
     return int(_get_redis_value(r_key_info, 'step_count'))
 
+
 def _status(r_key_info):
     return int(_get_redis_value(r_key_info, 'status'))
+
 
 def _progress_per(r_key_info):
     try:
@@ -360,6 +366,7 @@ def _progress_per(r_key_info):
         return "{0:.0f}%".format(per)
     except Exception, e:
         return "0%"
+
 
 def _progress_num(r_key_info):
     current_step = _current_step(r_key_info)

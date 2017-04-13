@@ -47,7 +47,7 @@ def set_task_complete(request):
     try:
         tid = request.session.get('tid', None)
         task = Task.objects.get(pk=tid)
-        if task.is_completed:
+        if task.is_completed():
             Task.objects.filter(id=tid).update(status=2)
             ext_helper.del_session(request, 'tid')
             msg = 'Update Task status Successfully'
