@@ -452,7 +452,6 @@ def deploy_status(request):
             if not redis_api.Rs.hexists(redis_key_info, k):
                 data[k] = value
         redis_api.Rs.hmset(redis_key_info, data)
-
     # 更新task中的状态为开始部署(status)和参数(params)
     update_task = {'status': 1}
     if task.params != params_json:
@@ -469,7 +468,10 @@ def deploy_status(request):
 def deploy_log(request, id):
     id = ext_helper.to_int(id)
     task_log = TaskLog.objects.get(id=id)
-    contents = task_log.content.split(',')
+    if task_log.content:
+        contents = task_log.content.split(',')
+    else:
+        contents = []
     task_results = task_log.task_result_set.all()
     dialog_title = '日志'
     render_url = "%s/%s" % (_class_name(), 'dialog_deploy_log.html')
