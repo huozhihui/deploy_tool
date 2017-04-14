@@ -22,16 +22,13 @@ def delete(request, id):
     obj.delete()
     if obj.id:
         request.session['msg'] = "数据删除失败!"
-        # 清除该任务的redis缓存
-        for task_log in task_logs:
-            print task_log
-            print task_log.redis_key_info()
-            print task_log.redis_key_result()
-            redis_api.Rs.delete(task_log.redis_key_info(), task_log.redis_key_result())
     else:
         # 如果清除的是当前的任务,则清除session
         if id == tid:
             ext_helper.del_session(request, 'tid')
+        # 清除该任务的redis缓存
+        _remove_redis_cache(task_logs)
+
         request.session['msg'] = "数据删除成功!"
     return index(request)
 
@@ -49,13 +46,26 @@ def set_task_complete(request):
         task = Task.objects.get(pk=tid)
         if task.is_completed():
             Task.objects.filter(id=tid).update(status=2)
+            # task_logs = task.tasklog_set.all()
             ext_helper.del_session(request, 'tid')
+            # 清除该任务的redis缓存
+            # _remove_redis_cache(task_logs)
             msg = 'Update Task status Successfully'
         else:
             msg = 'Task not deploy over!'
     except Exception, e:
         msg = 'Warn: task update error!'
     return HttpResponse(json.dumps({'msg': msg}), content_type='application/json')
+
+
+# 清除该任务的redis缓存
+def _remove_redis_cache(task_logs):
+    for task_log in task_logs:
+        redis_api.Rs.delete(task_log.redis_key_info(), task_log.redis_key_result())
+        print "清除redis中{key}的信息缓存。".format(key=task_log.redis_key_info())
+        print "清除redis中{key}的结果缓存。".format(key=task_log.redis_key_result())
+
+
 
 
 def _title_name():

@@ -16,7 +16,7 @@
                 <tr id='tr_{{ obj.id }}'
                     class="{% cycle 'odd' 'even' %} gradeX {% ifequal obj.status 2 %}green{% else %}red{% endifequal %}">
                     {% include './_td.html' %}
-                    <td>{{ obj.use_time }}</td>
+                    <td>{{ obj.timeout }}</td>
                     <td class="center">
                         <a href="#" data-target="#myModal" data-toggle="modal"
                            onclick="show_dialog('{% url 'homework_deploy_log' obj.id %}')" remote="true">详细</a>

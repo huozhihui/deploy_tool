@@ -64,7 +64,7 @@ class TaskLog(Base):
 
     # Redis-key
     def redis_key(self):
-        return "{tasklog_id}-{ip}".format(tasklog_id=self.id, ip=self.host.ip)
+        return "{id}-{ip}".format(id=self.id, ip=self.host.ip)
 
     # 任务在redis中详细信息
     def redis_key_info(self):
@@ -89,13 +89,13 @@ class TaskLog(Base):
 
 
     # 剩余时间
-    def rest_time(self):
-        return time.strftime('%H:%M:%S', time.gmtime(self.timeout))
+    # def rest_time(self):
+    #     return time.strftime('%H:%M:%S', time.gmtime(self.timeout))
 
     # 耗时
-    def use_time(self):
-        num = self.role_manage.timeout - self.timeout
-        return "{num}s".format(num=num)
+    # def use_time(self):
+    #     num = self.role_manage.timeout - self.timeout
+    #     return "{num}s".format(num=num)
 
     def status_name(self):
         STATUS = {"0": "待部署", "1": "正在部署", "2": "部署成功", "3": "部署失败", "4": "连接失败"}
