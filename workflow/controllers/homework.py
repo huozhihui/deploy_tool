@@ -451,6 +451,7 @@ def deploy_status(request):
         for k, value in other.items():
             if not redis_api.Rs.hexists(redis_key_info, k):
                 data[k] = value
+        redis_api.Rs.delete(redis_key_info)
         redis_api.Rs.hmset(redis_key_info, data)
     # 更新task中的状态为开始部署(status)和参数(params)
     update_task = {'status': 1}
