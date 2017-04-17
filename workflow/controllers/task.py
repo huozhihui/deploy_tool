@@ -46,10 +46,10 @@ def set_task_complete(request):
         task = Task.objects.get(pk=tid)
         if task.is_completed():
             Task.objects.filter(id=tid).update(status=2)
-            # task_logs = task.tasklog_set.all()
+            task_logs = task.tasklog_set.all()
             ext_helper.del_session(request, 'tid')
             # 清除该任务的redis缓存
-            # _remove_redis_cache(task_logs)
+            _remove_redis_cache(task_logs)
             msg = 'Update Task status Successfully'
         else:
             msg = 'Task not deploy over!'
@@ -59,7 +59,9 @@ def set_task_complete(request):
 
 
 # 清除该任务的redis缓存
+@ext_helper.thread_method
 def _remove_redis_cache(task_logs):
+    time.sleep(10)
     for task_log in task_logs:
         redis_api.Rs.delete(task_log.redis_key_info(), task_log.redis_key_result())
         print "清除redis中{key}的信息缓存。".format(key=task_log.redis_key_info())
