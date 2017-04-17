@@ -447,11 +447,14 @@ def deploy_status(request):
             'host_ip': task_log.host.ip
         })
         redis_key_info = task_log.redis_key_info()
+        redis_key_result= task_log.redis_key_result()
         other = {'use_time': 0, 'current_step': 0, 'content': ''}
         for k, value in other.items():
             if not redis_api.Rs.hexists(redis_key_info, k):
                 data[k] = value
         redis_api.Rs.delete(redis_key_info)
+        if task_log.status == 0:
+            redis_api.Rs.delete(redis_key_result)
         redis_api.Rs.hmset(redis_key_info, data)
     # 更新task中的状态为开始部署(status)和参数(params)
     update_task = {'status': 1}
