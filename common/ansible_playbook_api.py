@@ -57,7 +57,7 @@ class ResultCallback(CallbackBase):
         print u"执行主机: {ip}".format(ip=result._host.name)
         print u"任务名称: {task_name}".format(task_name=task_name)
         print u"任务结果: {content}".format(content=content)
-        if content:
+        if task_name != '' and content:
             data = {'task_log_id': self.tid, 'task_name': task_name, 'content': content, 'ansible_status': status}
             ip = result._host.name
             key = "{tid}-{ip}-result".format(tid=self.tid, ip=ip)
