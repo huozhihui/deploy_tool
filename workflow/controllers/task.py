@@ -18,7 +18,13 @@ def delete(request, id):
     id = ext_helper.to_int(id)
     tid = request.session.get('tid', None)
     obj = Task.objects.get(pk=id)
-    task_logs = obj.tasklog_set.all()
+    task_logs = TaskLog.objects.filter(task_id=obj.id)
+    # 清除该任务的redis缓存
+    for task_log in task_logs:
+        redis_api.Rs.delete(task_log.redis_key_info(), task_log.redis_key_result())
+        print "清除redis中{key}的信息缓存。".format(key=task_log.redis_key_info())
+        print "清除redis中{key}的结果缓存。".format(key=task_log.redis_key_result())
+    # _remove_redis_cache(task_logs)
     obj.delete()
     if obj.id:
         request.session['msg'] = "数据删除失败!"
@@ -26,9 +32,6 @@ def delete(request, id):
         # 如果清除的是当前的任务,则清除session
         if id == tid:
             ext_helper.del_session(request, 'tid')
-        # 清除该任务的redis缓存
-        _remove_redis_cache(task_logs)
-
         request.session['msg'] = "数据删除成功!"
     return index(request)
 
@@ -61,6 +64,7 @@ def set_task_complete(request):
 # 清除该任务的redis缓存
 @ext_helper.thread_method
 def _remove_redis_cache(task_logs):
+    print "开始清除redis缓存"
     time.sleep(10)
     for task_log in task_logs:
         redis_api.Rs.delete(task_log.redis_key_info(), task_log.redis_key_result())
