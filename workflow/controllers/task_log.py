@@ -99,25 +99,29 @@ def _get_ansible_result(ws, task_log_id, r_key_info, r_key_result):
 # 发送ws数据方法
 @ext_helper.thread_method
 def _send_data(ws, r_key_info, ws_status='success'):
-    ws_status_dict = {
-        'success': 'websocket访问服务端正常。',
-        'deploy_error': '{host_ip}部署失败,请重试成功后继续完成部署。'.format(host_ip=_host_ip(r_key_info)),
-        'server_error': '部署{host_ip}时,服务端异常,请解决异常后继续完成部署。'.format(host_ip=_host_ip(r_key_info))
-    }
-    ws_msg = ws_status_dict[ws_status]
-    progress_per = _progress_per(r_key_info)
-    progress_num = _progress_num(r_key_info)
-    send_data = {
-        'id': _task_log_id(r_key_info),
-        'status': _status(r_key_info),
-        'status_name': _status_name(r_key_info),
-        'use_time': _use_time(r_key_info),
-        'progress_per': progress_per,
-        'progress_num': progress_num,
-        'ws_status': ws_status,
-        'ws_msg': ws_msg
-    }
-    ws.send(text=json.dumps(send_data), bytes=None)
+    try:
+        ws_status_dict = {
+            'success': 'websocket访问服务端正常。',
+            'deploy_error': '{host_ip}部署失败,请重试成功后继续完成部署。'.format(host_ip=_host_ip(r_key_info)),
+            'server_error': '部署{host_ip}时,服务端异常,请解决异常后继续完成部署。'.format(host_ip=_host_ip(r_key_info))
+        }
+        ws_msg = ws_status_dict[ws_status]
+        progress_per = _progress_per(r_key_info)
+        progress_num = _progress_num(r_key_info)
+        send_data = {
+            'id': _task_log_id(r_key_info),
+            'status': _status(r_key_info),
+            'status_name': _status_name(r_key_info),
+            'use_time': _use_time(r_key_info),
+            'progress_per': progress_per,
+            'progress_num': progress_num,
+            'ws_status': ws_status,
+            'ws_msg': ws_msg
+        }
+        ws.send(text=json.dumps(send_data), bytes=None)
+    except Exception, e:
+        print 'Warn: {r_key_info} send data exception.'.format(r_key_info=r_key_info)
+        print e
 
 
 # 待部署的状态
