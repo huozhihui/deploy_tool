@@ -77,8 +77,9 @@ class Options(object):
         self.become_method = 'sudo'
         # self.ask_pass = "root"
         # self.ask_become_pass = "huo244"
-        self.verbose = "-vvv"
+        # self.verbose = "-vvv"
         self.check = False
+        self.host_key_checking = False
 
     def __getattr__(self, name):
         return None
